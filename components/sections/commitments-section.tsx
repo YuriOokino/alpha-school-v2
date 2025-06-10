@@ -9,19 +9,16 @@ export default function CommitmentsSection() {
           title="Love School"
           description="Alpha students love school – it's engaging, inspiring, and built for them."
           buttonText="Learn more"
-          buttonHref="#"
         />
         <CommitmentCard
           title="Learn 2x in 2 Hours"
           description="Alpha students learn twice as fast as their peers and rank in the top 1% nationwide."
           buttonText="Button"
-          buttonHref="#"
         />
         <CommitmentCard
           title="Learn Life Skills"
           description="Alpha students spend afternoons developing life skills and exploring their personas."
           buttonText="Button"
-          buttonHref="#"
         />
       </div>
     </section>

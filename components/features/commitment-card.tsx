@@ -25,11 +25,14 @@ export default function CommitmentCard({ title, description, buttonText, buttonH
       <CommitmentIcon />
       <h3 className="card-header text-white mb-[var(--space-sm)]">{title}</h3>
       <p className="body-text text-white mb-[var(--space-md)]">{description}</p>
-      {buttonText && buttonHref && (
-        <a href={buttonHref} className="font-bold text-white inline-flex items-center gap-2 hover:underline">
+      {buttonText && (
+        <button
+          type="button"
+          className="font-bold text-[#0000ED] bg-[#B9EDFF] inline-flex items-center gap-2 px-6 py-2 radius-pill cursor-pointer no-underline transition focus:outline-none focus:ring-2 focus:ring-[#0000ED] active:opacity-80 shadow-none"
+        >
           {buttonText}
           <span aria-hidden="true">&rarr;</span>
-        </a>
+        </button>
       )}
     </div>
   )
