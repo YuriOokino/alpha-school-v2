@@ -91,7 +91,7 @@
   }
   
   .alpha-card {
-    @apply bg-white shadow-lg p-[var(--space-sm)] rounded-[var(--radius-sm)];
+    @apply bg-white p-[var(--space-sm)] rounded-[var(--radius-sm)];
   }
   
   .alpha-btn-primary {
@@ -111,7 +111,7 @@
   }
   
   .alpha-dropdown {
-    @apply absolute top-full mt-[var(--space-xs)] w-64 bg-white text-[#111827] rounded-[var(--radius-sm)] shadow-lg py-[var(--space-sm)] z-50;
+    @apply absolute top-full mt-[var(--space-xs)] w-64 bg-white text-[#111827] rounded-[var(--radius-sm)] py-[var(--space-sm)] z-50;
   }
 
   .alpha-testimonial {
@@ -415,3 +415,8 @@
  *   <button className="alpha-btn-primary">Call to Action</button>
  * </section>
  */
+
+a, a:visited, a:hover, a:active {
+  color: inherit;
+
+}

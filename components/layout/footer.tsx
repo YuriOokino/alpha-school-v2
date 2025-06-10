@@ -26,17 +26,17 @@ export default function Footer() {
             <h3 className="text-xl font-bold mb-4 pb-2">About</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="hover:text-blue-800">
+                <Link href="#">
                   Love School
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-blue-800">
+                <Link href="#">
                   Learn 2x in 2hrs
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-blue-800">
+                <Link href="#">
                   Learn Life Skills
                 </Link>
               </li>
@@ -48,22 +48,22 @@ export default function Footer() {
             <h3 className="text-xl font-bold mb-4 pb-2">Resources</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="hover:text-blue-800">
+                <Link href="#">
                   Alpha in Action
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-blue-800">
+                <Link href="#">
                   Locations
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-blue-800">
+                <Link href="#">
                   Alpha Micro Schools
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-blue-800">
+                <Link href="#">
                   FAQs
                 </Link>
               </li>

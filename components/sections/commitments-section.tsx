@@ -3,7 +3,7 @@ import CommitmentCard from "@/components/features/commitment-card";
 export default function CommitmentsSection() {
   return (
     <section className="alpha-section bg-white">
-      <h2 className="section-headline font-bold text-center text-[#111827] mb-[var(--space-lg)]">Alpha's 3 Commitments</h2>
+      <h2 className="section-headline text-center text-[#111827] mb-[var(--space-lg)]">Alpha's 3 Commitments</h2>
       <div className="w-full bg-[#0000ED] rounded-[var(--radius-lg)] p-[var(--space-xl)] flex flex-col md:flex-row gap-[var(--space-lg)] justify-between items-stretch">
         <CommitmentCard
           title="Love School"

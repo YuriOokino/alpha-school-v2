@@ -10,6 +10,8 @@ interface LocationCardProps {
   buttonText?: string
   buttonHref?: string
   buttonClassName?: string
+  className?: string
+  newsHeading?: React.ReactNode
 }
 
 const InfoIcon = () => (
@@ -19,17 +21,24 @@ const InfoIcon = () => (
   </svg>
 )
 
-export default function LocationCard({ image, title, address, city, tuition, buttonText = "Apply Now", buttonHref = "#", buttonClassName = "" }: LocationCardProps) {
+export default function LocationCard({ image, title, address, city, tuition, buttonText = "Apply Now", buttonHref = "#", buttonClassName = "", className = "", newsHeading }: LocationCardProps) {
   return (
-    <Card className="bg-[#FFD1D1] rounded-[var(--radius-md)] p-[var(--space-md)] flex flex-col h-full border-0 shadow-none">
+    <Card className={`bg-[#FFD1D1] rounded-[var(--radius-md)] p-[var(--space-md)] flex flex-col h-full border-0 shadow-none ${className}`}>
+      {newsHeading && <div>{newsHeading}</div>}
       <div className="w-full aspect-video rounded-[var(--radius-sm)] overflow-hidden mb-[var(--space-md)]">
-        <Image src={image} alt={title} width={400} height={225} className="object-cover w-full h-full" />
+        <Image src={image} alt={typeof title === 'string' ? title : ''} width={400} height={225} className="object-cover w-full h-full" />
       </div>
       <div className="flex-1">
-        <h3 className="font-bold text-[#5C2727] text-lg mb-[var(--space-xs)]">{title}</h3>
+        {typeof title === 'string' ? (
+          <h3 className="font-bold text-[#5C2727] text-lg mb-[var(--space-xs)]">{title}</h3>
+        ) : (
+          title
+        )}
         <div className="text-[#5C2727] text-sm mb-1">{address}</div>
         <div className="text-[#5C2727] text-sm mb-1">{city}</div>
-        <div className="text-[#5C2727] text-sm mb-[var(--space-sm)]"><span className="font-bold">Tuition: {tuition}</span> <InfoIcon /></div>
+        {tuition && (
+          <div className="text-[#5C2727] text-sm mb-[var(--space-sm)]"><span className="font-bold">Tuition: {tuition}</span> <InfoIcon /></div>
+        )}
       </div>
       <a href={buttonHref} className={`w-full text-center mt-auto ${buttonClassName}`}>{buttonText}</a>
     </Card>
