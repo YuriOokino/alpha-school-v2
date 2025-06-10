@@ -4,33 +4,7 @@ import React, { useState } from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
-
-const guides = [
-  {
-    name: "Alex Morgan",
-    role: "LEAD GUIDE / LEARNING HUB",
-    bio: "Educator and international birth justice advocate. Extensive experience in alternative education, world-schooling across South Africa, Australia, Europe, and Latin America. Consultant for self-directed learning models.",
-    image: "/assets/guides/guide-img-placeholder.png",
-  },
-  {
-    name: "Jamie Lee",
-    role: "LEAD GUIDE / LEARNING HUB",
-    bio: "STEM specialist and project-based learning expert. Passionate about empowering students to pursue curiosity-driven learning.",
-    image: "/assets/guides/guide-img-placeholder.png",
-  },
-  {
-    name: "Morgan Taylor",
-    role: "LEAD GUIDE / LEARNING HUB",
-    bio: "Language arts and literacy coach. Focused on building strong communication skills and fostering a love of reading.",
-    image: "/assets/guides/guide-img-placeholder.png",
-  },
-  {
-    name: "Jordan Shepard",
-    role: "LEAD GUIDE / LEARNING HUB",
-    bio: "Social-emotional learning facilitator. Dedicated to helping students develop resilience and leadership.",
-    image: "/assets/guides/guide-img-placeholder.png",
-  },
-]
+import { guides } from "@/content/guides"
 
 const visibleCards = 3.5;
 const cardWidth = 100 / visibleCards;

@@ -184,7 +184,7 @@ export function Navbar() {
         </nav>
         {/* CTA Button */}
         <div className="hidden md:block ml-8">
-          <Button variant="secondary" className="bg-blue-700 text-white hover:bg-blue-800 rounded-full px-8 py-2 text-lg font-semibold">
+          <Button className="text-white rounded-full font-semibold">
             Learn more
           </Button>
         </div>
