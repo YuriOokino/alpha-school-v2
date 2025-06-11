@@ -14,10 +14,12 @@ const buttonVariants = cva(
         outline: "bg-black text-white hover:bg-neutral-800",
         secondary: "bg-black text-white hover:bg-neutral-800",
         ghost: "bg-black text-white hover:bg-neutral-800",
-        link: "bg-black text-white underline-offset-4 hover:underline hover:bg-neutral-800",
+        link: "bg-black text-white underline-offset-4 hover:bg-neutral-800",
         lightBlue: "bg-[#D6F0FF] text-black hover:bg-[#b3e4ff]",
         maroon: "bg-[#5C2727] text-white hover:bg-[#7a3535]",
         pink: "bg-[#FFD1D1] text-[#5C2727] hover:bg-[#ffb3b3]",
+        filter: "bg-[black] text-white rounded-full px-4 py-2 font-semibold shadow-none border-0",
+        filterOutline: "bg-transparent text-[black] border border-[black] rounded-full px-4 py-2 font-semibold shadow-none focus:ring-2 focus:ring-[#60a5fa]"
       },
       size: {
         default: "h-11 px-6 py-2.5",

@@ -83,11 +83,11 @@
   }
   
   .alpha-section {
-    @apply max-w-[1280px] mx-auto px-6 md:px-[var(--space-md)] py-[var(--space-xl)];
+    @apply max-w-[1280px] mx-auto px-6 md:px-[var(--space-md)] mb-[var(--space-xl)] py-[var(--space-xl)];
   }
   
   .alpha-heading {
-    @apply section-headline text-center mb-[var(--space-lg)] text-[#111827];
+    @apply section-headline text-center mb-[var(--space-sm)] text-[#111827];
   }
   
   .alpha-card {

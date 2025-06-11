@@ -9,7 +9,7 @@ interface MainHeadingProps {
 
 export default function MainHeading({ children, description, actions, className = "" }: MainHeadingProps) {
   return (
-    <div className="pt-[var(--space-3xl)] mb-[var(--space-3xl)]">
+    <div className="pt-[var(--space-3xl)] mb-[var(--space-lg)]">
       <h1
         className={`alpha-heading text-center max-w-[60vw] mx-auto mb-6 ${className}`.trim()}
         tabIndex={-1}

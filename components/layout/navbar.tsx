@@ -141,9 +141,8 @@ export const navItems: NavItem[] = [
       {
         label: "Resources",
         items: [
-          { title: "Blog", href: "#", description: "Latest news and insights" },
-          { title: "Newsletter", href: "#", description: "Stay updated with our newsletter" },
-          { title: "Media Kit", href: "#", description: "Press and media resources" },
+          { title: "Video Library", href: "/video-library", description: "Dive into Alpha School" },
+          { title: "Our Guides", href: "#", description: "Meet the amazing people at Alpha" },
         ],
       },
     ],
