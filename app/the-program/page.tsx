@@ -36,7 +36,7 @@ export default function TheProgramPage() {
         {/* Intro Section: horizontal layout, no card, no background */}
         <section className="flex flex-col md:flex-row gap-[var(--space-xl)] items-stretch mb-[var(--space-2xl)]">
           <div className="flex-1 flex flex-col justify-center">
-            <h2 className="text-[20px] mb-4">
+            <h2 className="text-[20px] text-[hsl(var(--color-primary))] mb-4">
               What if your child could crush academics in just 2 hours and spend the rest of their day unlocking limitless potential?
             </h2>
             <p className="mb-4">
