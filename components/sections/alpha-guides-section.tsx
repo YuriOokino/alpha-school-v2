@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { guides } from "@/content/guides"
+import Link from "next/link"
 
 const visibleCards = 3.5;
 const cardWidth = 100 / visibleCards;
@@ -101,7 +102,12 @@ export default function AlphaGuidesSection() {
       <div className="w-full bg-[hsl(var(--color-surface))] rounded-[var(--radius-lg)] p-[var(--space-xl)] relative">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-[var(--space-lg)] gap-[var(--space-md)]">
           <h3 className="section-headline font-bold">Meet our Guides</h3>
-          <a href="#" className="text-base inline-flex items-center gap-2 self-start md:self-auto bg-black text-white hover:bg-[#222] px-6 py-2 rounded-full font-semibold transition-colors">View all Guides <span aria-hidden="true">&rarr;</span></a>
+          <Button asChild variant="default" className="self-start md:self-auto gap-2">
+            <Link href="#" className="!text-white">
+              View all Guides
+              
+            </Link>
+          </Button>
         </div>
         <div className="relative flex items-center">
           <div className="overflow-hidden w-full">

@@ -26,15 +26,15 @@
 /* Typography System */
 @layer base {
   h1, .hero-headline {
-    @apply font-bold text-[48px] md:text-[64px] leading-[1.2] tracking-tight;
+    @apply font-bold text-[48px] md:text-[64px] leading-[1.2];
   }
 
   h2, .section-headline {
-    @apply font-semibold text-[40px] md:text-[48px] leading-[1.2] tracking-tight;
+    @apply font-semibold text-[40px] md:text-[48px] leading-[1.2];
   }
 
   h3, .card-header {
-    @apply font-semibold text-[24px] leading-[1.4] tracking-tight;
+    @apply font-semibold text-[24px] leading-[1.4];
   }
 
   p, .body-text {
@@ -289,6 +289,16 @@
     --sidebar-accent-foreground: var(--color-text-main);
     --sidebar-border: var(--border);
     --sidebar-ring: var(--color-primary);
+
+    /* New Global Variables */
+    --color-pink: #FCCFCF;
+    --color-maroon: #5C2727;
+    --tagline-primary-bg: #0000ED;
+    --tagline-primary-text: #fff;
+    --tagline-accent-bg: var(--color-pink);
+    --tagline-accent-text: var(--color-maroon);
+    --tagline-maroon-bg: var(--color-maroon);
+    --tagline-maroon-text: #fff;
   }
   
   .dark {
@@ -419,4 +429,17 @@
 a, a:visited, a:hover, a:active {
   color: inherit;
 
+}
+
+.tagline-primary {
+  background: var(--tagline-primary-bg);
+  color: var(--tagline-primary-text);
+}
+.tagline-accent {
+  background: var(--tagline-accent-bg);
+  color: var(--tagline-accent-text);
+}
+.tagline-maroon {
+  background: var(--tagline-maroon-bg);
+  color: var(--tagline-maroon-text);
 }

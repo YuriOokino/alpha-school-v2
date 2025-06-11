@@ -29,7 +29,7 @@ export default function NewLocationsSection({ locations }: NewLocationsSectionPr
       <div className="w-full bg-[#6B3535] rounded-[var(--radius-lg)] p-[var(--space-xl)] relative">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-[var(--space-lg)] gap-[var(--space-md)]">
           <h3 className="font-bold text-2xl text-[#FFD1D1]">New Locations Opening in August 2025</h3>
-          <a href="#" className="alpha-btn-warm text-base inline-flex items-center gap-2 self-start md:self-auto">View all locations <span aria-hidden="true">&rarr;</span></a>
+          <a href="#" className="alpha-btn-warm text-base inline-flex items-center gap-2 self-start md:self-auto">View all locations</a>
         </div>
         <div className="relative flex items-center">
           <div className="overflow-hidden w-full">

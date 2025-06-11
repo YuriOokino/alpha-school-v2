@@ -28,7 +28,8 @@ interface LocationGroup {
 interface NavItem {
   title: string
   href: string
-  dropdown?: DropdownItem[]
+  megaMenu: { label: string; items: DropdownItem[] }[]
+  sidebar: React.ReactNode
 }
 
 const locationGroups: LocationGroup[] = [
@@ -66,120 +67,149 @@ const newsItems = [
   "Join our upcoming parent information session",
 ]
 
-const navItems: NavItem[] = [
+export const navItems: NavItem[] = [
   {
     title: "The Program",
-    href: "#",
-    dropdown: [
-      { title: "Overview", href: "#", description: "Learn about our innovative approach" },
-      { title: "Academic Excellence", href: "#", description: "How we achieve more in less time" },
-      { title: "Life Skills", href: "#", description: "Building essential skills for success" },
-      { title: "Community", href: "#", description: "Creating a supportive environment" },
-    ]
+    href: "/the-program",
+    megaMenu: [
+      {
+        label: "Learn",
+        items: [
+          { title: "Love School", href: "/the-program#love-school", description: "Learn about our innovative approach" },
+          { title: "Learn 2X in 2 Hours", href: "/the-program#learn-2x", description: "How we achieve more in less time" },
+          { title: "Learn Life Skills", href: "/the-program#lifeskills-workshops", description: "Building essential skills for success" },
+        ],
+      },
+      {
+        label: "Media",
+        items: [
+          { title: "Alpha In Action", href: "#", description: "Creating a supportive environment" },
+        ],
+      },
+    ],
+    sidebar: <NewsCard />,
+  },
+  {
+    title: "Locations",
+    href: "/locations",
+    megaMenu: [
+      {
+        label: "TEXAS",
+        items: [
+          { title: "Austin", href: "#", description: "PK4-8" },
+          { title: "Brownsville", href: "#", description: "PK 8" },
+          { title: "Houston", href: "#", description: "Opening August 2025" },
+          { title: "Fort Worth", href: "#", description: "Opening August 2025" },
+        ],
+      },
+      {
+        label: "FLORIDA",
+        items: [
+          { title: "Miami", href: "#", description: "K 10" },
+          { title: "Orlando", href: "#", description: "Opening August 2025" },
+          { title: "Tampa", href: "#", description: "Opening August 2025" },
+          { title: "Palm Beach", href: "#", description: "Opening August 2025" },
+        ],
+      },
+      {
+        label: "MORE LOCATIONS",
+        items: [
+          { title: "New York City, New York", href: "#", description: "Opening August 2025" },
+          { title: "Santa Barbara, Arizona", href: "#", description: "Opening August 2025" },
+          { title: "Scottsdale, California", href: "#", description: "Opening August 2025" },
+        ],
+      },
+    ],
+    sidebar: <NewsCard />,
   },
   {
     title: "Admission",
     href: "#",
-    dropdown: [
-      { title: "How to Apply", href: "#", description: "Step-by-step application process" },
-      { title: "Tuition & Aid", href: "#", description: "Financial information and support" },
-      { title: "FAQs", href: "#", description: "Common questions about admission" },
-    ]
+    megaMenu: [
+      {
+        label: "Admission",
+        items: [
+          { title: "How to Apply", href: "#", description: "Step-by-step application process" },
+          { title: "Tuition & Aid", href: "#", description: "Financial information and support" },
+          { title: "FAQs", href: "#", description: "Common questions about admission" },
+        ],
+      },
+    ],
+    sidebar: <NewsCard />,
   },
   {
     title: "Events",
-    href: "#"
+    href: "#",
+    megaMenu: [],
+    sidebar: <NewsCard />,
   },
   {
     title: "Resources",
     href: "#",
-    dropdown: [
-      { title: "Blog", href: "#", description: "Latest news and insights" },
-      { title: "Newsletter", href: "#", description: "Stay updated with our newsletter" },
-      { title: "Media Kit", href: "#", description: "Press and media resources" },
-    ]
+    megaMenu: [
+      {
+        label: "Resources",
+        items: [
+          { title: "Blog", href: "#", description: "Latest news and insights" },
+          { title: "Newsletter", href: "#", description: "Stay updated with our newsletter" },
+          { title: "Media Kit", href: "#", description: "Press and media resources" },
+        ],
+      },
+    ],
+    sidebar: <NewsCard />,
   },
   {
     title: "Insights",
     href: "#",
-    dropdown: [
-      { title: "Research", href: "#", description: "Our educational approach" },
-      { title: "Success Stories", href: "#", description: "Student and parent testimonials" },
-      { title: "In the News", href: "#", description: "Media coverage and press" },
-    ]
-  }
+    megaMenu: [
+      {
+        label: "Insights",
+        items: [
+          { title: "Research", href: "#", description: "Our educational approach" },
+          { title: "Success Stories", href: "#", description: "Student and parent testimonials" },
+          { title: "In the News", href: "#", description: "Media coverage and press" },
+        ],
+      },
+    ],
+    sidebar: <NewsCard />,
+  },
 ]
+
+// Refactor locationGroups to match MegaMenuGroup format
+const locationGroupsUnified = locationGroups.map(group => ({
+  label: group.title,
+  items: group.items.map(item => ({
+    title: item.name,
+    href: '#',
+    description: item.info,
+  })),
+}));
 
 export function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)
-  const [isLocationsOpen, setIsLocationsOpen] = useState(false)
   const [isMenuHovered, setIsMenuHovered] = useState(false)
+  const [isNavHovered, setIsNavHovered] = useState(false)
   const closeTimeout = useRef<NodeJS.Timeout | null>(null)
 
-  // Determine which menu is open and what to show in MegaMenu
   let megaMenuGroups = null;
   let megaMenuSidebar = null;
-  if (isLocationsOpen) {
-    megaMenuGroups = locationGroups.map(group => ({
-      label: group.title,
-      items: group.items.map(item => ({
-        title: item.name + (item.hasArrow ? ' →' : ''),
-        href: '#',
-        description: item.info,
-      })),
-    }));
-    megaMenuSidebar = <NewsCard />;
-  } else if (activeDropdown) {
-    const navItem = navItems.find(item => item.title === activeDropdown);
-    if (navItem && navItem.dropdown) {
-      if (navItem.title === 'The Program') {
-        megaMenuGroups = [
-          {
-            label: 'Learn',
-            items: [
-              { title: 'Love school', href: '#' },
-              { title: 'Learn 2X in 2 Hours', href: '#' },
-              { title: 'Learn Life skills', href: '#' },
-            ],
-          },
-          {
-            label: 'Media',
-            items: [
-              { title: 'Alpha In action', href: '#' },
-            ],
-          },
-        ];
-      } else {
-        megaMenuGroups = [
-          {
-            label: navItem.title,
-            items: navItem.dropdown,
-          },
-        ];
-      }
-    }
+  const activeNavItem = navItems.find(item => item.title === activeDropdown);
+  if (activeNavItem) {
+    megaMenuGroups = activeNavItem.megaMenu;
+    megaMenuSidebar = activeNavItem.sidebar;
   }
 
   // Handlers for hover logic
   const handleNavMouseEnter = (title: string) => {
     if (closeTimeout.current) clearTimeout(closeTimeout.current)
     setActiveDropdown(title)
-    setIsLocationsOpen(false)
+    setIsNavHovered(true)
   }
   const handleNavMouseLeave = () => {
+    setIsNavHovered(false)
     closeTimeout.current = setTimeout(() => {
       if (!isMenuHovered) setActiveDropdown(null)
-    }, 100)
-  }
-  const handleLocationsMouseEnter = () => {
-    if (closeTimeout.current) clearTimeout(closeTimeout.current)
-    setIsLocationsOpen(true)
-    setActiveDropdown(null)
-  }
-  const handleLocationsMouseLeave = () => {
-    closeTimeout.current = setTimeout(() => {
-      if (!isMenuHovered) setIsLocationsOpen(false)
-    }, 100)
+    }, 120)
   }
   const handleMenuMouseEnter = () => {
     if (closeTimeout.current) clearTimeout(closeTimeout.current)
@@ -188,9 +218,8 @@ export function Navbar() {
   const handleMenuMouseLeave = () => {
     setIsMenuHovered(false)
     closeTimeout.current = setTimeout(() => {
-      setActiveDropdown(null)
-      setIsLocationsOpen(false)
-    }, 100)
+      if (!isNavHovered) setActiveDropdown(null)
+    }, 120)
   }
 
   return (
@@ -212,54 +241,20 @@ export function Navbar() {
         {/* Navigation */}
         <nav className="flex-1 flex justify-center h-full">
           <ul className="flex gap-8 items-center h-full">
-            {/* Render nav items up to Admission */}
-            {navItems.slice(0, 2).map((item) => (
+            {navItems.map((item) => (
               <li
                 key={item.title}
-                className={`relative h-full flex items-center${item.dropdown ? ' group' : ''}`}
+                className={`relative h-full flex items-center${item.megaMenu.length ? ' group' : ''}`}
                 onMouseEnter={() => handleNavMouseEnter(item.title)}
                 onMouseLeave={handleNavMouseLeave}
               >
                 <Link
                   href={item.href}
-                  className={`px-3 py-2 flex items-center font-semibold text-base transition-colors duration-150 h-full ${activeDropdown === item.title ? 'text-blue-700' : 'text-gray-900'}`}
+                  className={`px-3 py-2 flex items-center text-base transition-colors duration-150 h-full`}
                 >
                   {item.title}
-                  {item.dropdown && (
-                    <ChevronRight className={`h-4 w-4 ml-1 transition-transform duration-150 ${activeDropdown === item.title ? 'rotate-90' : ''} group-hover:rotate-90`} />
-                  )}
-                </Link>
-              </li>
-            ))}
-            {/* Insert Locations after Admission */}
-            <li className="relative h-full flex items-center group">
-              <button
-                onMouseEnter={handleLocationsMouseEnter}
-                onMouseLeave={handleLocationsMouseLeave}
-                onClick={() => setIsLocationsOpen((v) => !v)}
-                className="px-3 py-2 flex items-center font-semibold text-base transition-colors duration-150 h-full text-gray-900"
-                aria-expanded={isLocationsOpen}
-                aria-haspopup="true"
-              >
-                Locations
-                <ChevronDown className={`h-4 w-4 ml-1 transition-transform duration-150 ${isLocationsOpen ? 'rotate-180' : ''}`} />
-              </button>
-            </li>
-            {/* Render the rest of the nav items */}
-            {navItems.slice(2).map((item) => (
-              <li
-                key={item.title}
-                className={`relative h-full flex items-center${item.dropdown ? ' group' : ''}`}
-                onMouseEnter={() => handleNavMouseEnter(item.title)}
-                onMouseLeave={handleNavMouseLeave}
-              >
-                <Link
-                  href={item.href}
-                  className={`px-3 py-2 flex items-center font-semibold text-base transition-colors duration-150 h-full ${activeDropdown === item.title ? 'text-blue-700' : 'text-gray-900'}`}
-                >
-                  {item.title}
-                  {item.dropdown && (
-                    <ChevronRight className={`h-4 w-4 ml-1 transition-transform duration-150 ${activeDropdown === item.title ? 'rotate-90' : ''} group-hover:rotate-90`} />
+                  {item.megaMenu.length > 0 && (
+                    <ChevronRight className="h-4 w-4 ml-1" />
                   )}
                 </Link>
               </li>
@@ -273,7 +268,7 @@ export function Navbar() {
           </Button>
         </div>
         {/* MegaMenu rendered as sibling, not inside nav or li */}
-        {((isLocationsOpen && megaMenuGroups) || (activeDropdown && megaMenuGroups)) && (
+        {activeNavItem && megaMenuGroups && (
           <div
             onMouseEnter={handleMenuMouseEnter}
             onMouseLeave={handleMenuMouseLeave}

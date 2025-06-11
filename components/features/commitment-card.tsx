@@ -31,7 +31,6 @@ export default function CommitmentCard({ title, description, buttonText, buttonH
           className="font-bold text-[#0000ED] bg-[#B9EDFF] inline-flex items-center gap-2 px-6 py-2 radius-pill cursor-pointer no-underline transition focus:outline-none focus:ring-2 focus:ring-[#0000ED] active:opacity-80 shadow-none"
         >
           {buttonText}
-          <span aria-hidden="true">&rarr;</span>
         </button>
       )}
     </div>

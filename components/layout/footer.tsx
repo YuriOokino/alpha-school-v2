@@ -23,7 +23,7 @@ export default function Footer() {
 
           {/* About */}
           <div className="md:col-span-1">
-            <h3 className="text-xl font-bold mb-4 pb-2">About</h3>
+            <h3 className="text-base font-medium mb-2 pb-0">About</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="#">
@@ -45,7 +45,7 @@ export default function Footer() {
 
           {/* Resources */}
           <div className="md:col-span-1">
-            <h3 className="text-xl font-bold mb-4 pb-2">Resources</h3>
+            <h3 className="text-base font-medium mb-2 pb-0">Resources</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="#">
@@ -72,7 +72,7 @@ export default function Footer() {
 
           {/* Insights */}
           <div className="md:col-span-1">
-            <h3 className="text-xl font-bold mb-4 pb-2">Insights</h3>
+            <h3 className="text-base font-medium mb-2 pb-0">Insights</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="#" className="hover:text-blue-800">
@@ -94,7 +94,7 @@ export default function Footer() {
 
           {/* Other Schools */}
           <div className="md:col-span-1">
-            <h3 className="text-xl font-bold mb-4 pb-2">Other Schools</h3>
+            <h3 className="text-base font-medium mb-2 pb-0">Other Schools</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="#" className="hover:text-blue-800">
