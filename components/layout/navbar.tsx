@@ -90,6 +90,12 @@ export const navItems: NavItem[] = [
     sidebar: <NewsCard />,
   },
   {
+    title: "Admission",
+    href: "#",
+    megaMenu: [],
+    sidebar: null,
+  },
+  {
     title: "Locations",
     href: "/locations",
     megaMenu: [
@@ -117,21 +123,6 @@ export const navItems: NavItem[] = [
           { title: "New York City, New York", href: "#", description: "Opening August 2025" },
           { title: "Santa Barbara, Arizona", href: "#", description: "Opening August 2025" },
           { title: "Scottsdale, California", href: "#", description: "Opening August 2025" },
-        ],
-      },
-    ],
-    sidebar: <NewsCard />,
-  },
-  {
-    title: "Admission",
-    href: "#",
-    megaMenu: [
-      {
-        label: "Admission",
-        items: [
-          { title: "How to Apply", href: "#", description: "Step-by-step application process" },
-          { title: "Tuition & Aid", href: "#", description: "Financial information and support" },
-          { title: "FAQs", href: "#", description: "Common questions about admission" },
         ],
       },
     ],
@@ -244,16 +235,24 @@ export function Navbar() {
             {navItems.map((item) => (
               <li
                 key={item.title}
-                className={`relative h-full flex items-center${item.megaMenu.length ? ' group' : ''}`}
-                onMouseEnter={() => handleNavMouseEnter(item.title)}
-                onMouseLeave={handleNavMouseLeave}
+                className={`relative h-full flex items-center${item.megaMenu && item.megaMenu.length > 0 && item.sidebar ? ' group' : ''}`}
+                onMouseEnter={() => {
+                  if (item.megaMenu && item.megaMenu.length > 0 && item.sidebar) {
+                    handleNavMouseEnter(item.title)
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (item.megaMenu && item.megaMenu.length > 0 && item.sidebar) {
+                    handleNavMouseLeave()
+                  }
+                }}
               >
                 <Link
                   href={item.href}
                   className={`px-3 py-2 flex items-center text-base transition-colors duration-150 h-full`}
                 >
                   {item.title}
-                  {item.megaMenu.length > 0 && (
+                  {item.megaMenu && item.megaMenu.length > 0 && (
                     <ChevronRight className="h-4 w-4 ml-1" />
                   )}
                 </Link>

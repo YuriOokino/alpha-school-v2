@@ -443,3 +443,54 @@ a, a:visited, a:hover, a:active {
   background: var(--tagline-maroon-bg);
   color: var(--tagline-maroon-text);
 }
+
+/* Color Scheme Utility Classes */
+.scheme-blue {
+  background: #0000ED;
+  color: #fff;
+}
+.scheme-blue h1, .scheme-blue h2, .scheme-blue h3, .scheme-blue .featurecard-heading {
+  color: #B9EDFF;
+}
+
+.scheme-lightblue {
+  background: #B9EDFF;
+  color: #111827;
+}
+.scheme-lightblue h1, .scheme-lightblue h2, .scheme-lightblue h3, .scheme-lightblue .featurecard-heading {
+  color: #0000ED;
+}
+
+.scheme-pink {
+  background: var(--color-pink);
+  color: var(--color-maroon);
+}
+.scheme-pink h1, .scheme-pink h2, .scheme-pink h3, .scheme-pink .featurecard-heading {
+  color: var(--color-maroon);
+}
+
+.scheme-maroon {
+  background: var(--color-maroon);
+  color: #fff;
+}
+.scheme-maroon h1, .scheme-maroon h2, .scheme-maroon h3, .scheme-maroon .featurecard-heading {
+  color: var(--color-pink);
+}
+
+/* Tagline color auto-matching for color schemes */
+.scheme-blue .tagline {
+  background: #B9EDFF;
+  color: #0000ED;
+}
+.scheme-lightblue .tagline {
+  background: var(--tagline-primary-bg);
+  color: var(--tagline-primary-text);
+}
+.scheme-pink .tagline {
+  background: var(--tagline-accent-bg);
+  color: var(--tagline-accent-text);
+}
+.scheme-maroon .tagline {
+  background: var(--tagline-maroon-bg);
+  color: var(--tagline-maroon-text);
+}
