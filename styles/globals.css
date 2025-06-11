@@ -216,6 +216,7 @@
     --space-md: 24px;   /* Between titles, groups */
     --space-lg: 48px;   /* Section content spacing */
     --space-xl: 64px;   /* Section top/bottom margin/padding */
+    --space-3xl: 96px;  /* Extra-large vertical spacing for hero/main headings */
     
     /* Border Radius System */
     --radius-xs: 8px;    /* Small inputs, chips, or badges */
