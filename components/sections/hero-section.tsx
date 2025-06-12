@@ -24,7 +24,7 @@ export default function HeroSection() {
         <p className="text-lg md:text-xl mb-8 max-w-3xl mx-auto">
           Campuses in Austin, Brownsville, and Miami—and seven new locations launching soon.
         </p>
-        <Button variant="outline">Learn More</Button>
+        <Button variant="default" href="/learn-more">Learn More</Button>
       </div>
 
       {/* Featured In Section */}

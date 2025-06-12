@@ -28,16 +28,13 @@ export default function GuideCard({ image, name, role, bio, className = "" }: Gu
       <img src={image} alt={name} className="absolute inset-0 w-full h-full object-cover" />
       <div className="relative z-10 p-0 flex flex-col gap-2 w-full">
         <div
-          className={
-            "transition-colors duration-500 ease-in-out rounded-[var(--radius-md)] p-4 m-4 cursor-pointer bg-[#B9EDFF] " +
-            (hovered ? "bg-[rgba(0,0,237,0.7)]" : "")
-          }
+          className="transition-colors duration-500 ease-in-out rounded-[var(--radius-md)] p-4 m-4 cursor-pointer bg-[var(--color-primary-light)]"
         >
-          <div className={"transition-all duration-300 ease-in-out " + (hovered ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100 h-auto overflow-visible')}>
-            <Tagline>{role}</Tagline>
-            <h3 className="text-[#111827] font-bold text-lg leading-tight mb-1">{name}</h3>
+          <div className={"transition-all duration-300 ease-in-out flex flex-col gap-2 items-start " + (hovered ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100 h-auto overflow-visible')}>
+            <span className="tag">{role}</span>
+            <h3 className="text-[var(--color-text-main)] font-light uppercase text-lg leading-tight">{name}</h3>
           </div>
-          <p className={"text-white text-sm leading-snug transition-all duration-300 ease-in-out m-0 " + (hovered ? 'opacity-100 h-auto overflow-visible' : 'opacity-0 h-0 overflow-hidden')}>{bio}</p>
+          <p className={"text-sm leading-snug transition-all duration-300 ease-in-out m-0 " + (hovered ? 'opacity-100 h-auto overflow-visible' : 'opacity-0 h-0 overflow-hidden')}>{bio}</p>
         </div>
       </div>
     </div>

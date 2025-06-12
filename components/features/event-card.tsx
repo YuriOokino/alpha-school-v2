@@ -59,8 +59,8 @@ export default function EventCard({
           <span>{address}</span>
         </div>
         <p className="mb-4 text-[var(--color-text-main)]">{description}</p>
-        <Button asChild className="bg-[var(--color-primary)] text-white">
-          <Link href={url}>{buttonText}</Link>
+        <Button variant="lightBlue" className="bg-[var(--color-primary)] text-white">
+          href={url}{buttonText}
         </Button>
       </div>
     </div>

@@ -4,6 +4,8 @@
 import React, { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 import SimpleCarousel from "@/components/features/simple-carousel"
 import WhatsNextSection from "@/components/sections/whats-next-section"
 
@@ -19,6 +21,7 @@ export default function LearnMorePage() {
   const [zip, setZip] = useState("");
   const [isParent, setIsParent] = useState("");
   const [selectedSchools, setSelectedSchools] = useState<string[]>([]);
+  const [howDidYouHear, setHowDidYouHear] = useState("");
   const [additionalInfo, setAdditionalInfo] = useState("");
   const [consent, setConsent] = useState(false);
 
@@ -49,7 +52,7 @@ export default function LearnMorePage() {
     e.preventDefault();
     // Handle form submission logic here
     // For now, just log the values
-    console.log({ firstName, lastName, email, phone, street, city, state, zip, isParent, selectedSchools, additionalInfo, consent });
+    console.log({ firstName, lastName, email, phone, street, city, state, zip, isParent, selectedSchools, howDidYouHear, additionalInfo, consent });
   };
 
   // Prepare card data
@@ -109,93 +112,88 @@ export default function LearnMorePage() {
         {/* Contact Form below cards */}
         <div className="alpha-section">
           <div className="bg-[#B9EDFF] text-[#111827] rounded-[40px] p-16 flex flex-col gap-4 shadow-none border-0 mx-auto">
-            <h2 className="text-2xl font-bold mb-4">Contact Us</h2>
+            
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div className="flex gap-4">
                 <div className="flex-1">
                   <label htmlFor="firstName" className="block mb-1 font-medium">First Name</label>
-                  <input
+                  <Input
                     id="firstName"
                     type="text"
-                    className="rounded px-3 py-2 w-full"
                     value={firstName}
                     onChange={e => setFirstName(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="flex-1">
                   <label htmlFor="lastName" className="block mb-1 font-medium">Last Name</label>
-                  <input
+                  <Input
                     id="lastName"
                     type="text"
-                    className="rounded px-3 py-2 w-full"
                     value={lastName}
                     onChange={e => setLastName(e.target.value)}
+                    required
                   />
                 </div>
               </div>
               <div className="flex gap-4">
                 <div className="flex-1">
                   <label htmlFor="email" className="block mb-1 font-medium">Email</label>
-                  <input
+                  <Input
                     id="email"
                     type="email"
-                    className="rounded px-3 py-2 w-full"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
+                    required
                   />
                 </div>
                 <div className="flex-1">
                   <label htmlFor="phone" className="block mb-1 font-medium">Phone Number</label>
-                  <input
+                  <Input
                     id="phone"
                     type="text"
-                    className="rounded px-3 py-2 w-full"
                     value={phone}
                     onChange={e => setPhone(e.target.value)}
+                    required
                   />
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block mb-1 font-medium">Street Address</label>
-                  <input
+                  <Input
                     type="text"
-                    className="w-full p-2 rounded"
-                    placeholder="Enter your street address"
                     value={street}
                     onChange={e => setStreet(e.target.value)}
                   />
                 </div>
                 <div>
                   <label className="block mb-1 font-medium">State</label>
-                  <input
+                  <Input
                     type="text"
-                    className="w-full p-2 rounded"
-                    placeholder="Enter your state"
                     value={state}
                     onChange={e => setState(e.target.value)}
+                    required
                   />
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block mb-1 font-medium">City</label>
-                  <input
+                  <Input
                     type="text"
-                    className="w-full p-2 rounded"
-                    placeholder="Enter your city"
                     value={city}
                     onChange={e => setCity(e.target.value)}
+                    required
                   />
                 </div>
                 <div>
                   <label className="block mb-1 font-medium">Zip</label>
-                  <input
+                  <Input
                     type="text"
-                    className="w-full p-2 rounded"
-                    placeholder="Enter your zip code"
                     value={zip}
                     onChange={e => setZip(e.target.value)}
+                    required
                   />
                 </div>
               </div>
@@ -241,10 +239,20 @@ export default function LearnMorePage() {
                 </div>
               </div>
               <div>
+                <label htmlFor="howDidYouHear" className="block mb-1 font-medium">How did you hear about us?</label>
+                <Input
+                  id="howDidYouHear"
+                  type="text"
+                  value={howDidYouHear}
+                  onChange={e => setHowDidYouHear(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
                 <label htmlFor="additionalInfo" className="block mb-1 font-medium">Additional Information/Questions?</label>
-                <textarea
+                <Textarea
                   id="additionalInfo"
-                  className="rounded px-3 py-2 w-full min-h-[140px]"
+                  className="min-h-[140px]"
                   value={additionalInfo}
                   onChange={e => setAdditionalInfo(e.target.value)}
                 />
@@ -258,7 +266,7 @@ export default function LearnMorePage() {
                   onChange={e => setConsent(e.target.checked)}
                 />
                 <label htmlFor="consent" className="text-sm">
-                  I consent to Alpha School contacting me about my inquiry.
+                  I agree to receive SMS messages from 2 Hour Learning regarding inquiry follow-up, invitations to events, and personalized updates about applications and enrollments. Message & data rates may apply. Reply STOP to opt out.
                 </label>
               </div>
               <Button type="submit" variant="default">Submit</Button>

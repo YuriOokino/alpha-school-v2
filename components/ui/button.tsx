@@ -1,7 +1,6 @@
 import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
+import Link from "next/link"
 import { cva, type VariantProps } from "class-variance-authority"
-
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
@@ -9,7 +8,7 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-black text-white hover:bg-neutral-800 [&_a]:text-white",
+        default: "bg-black text-white hover:bg-neutral-800 [&[href]]:text-white",
         destructive: "bg-black text-white hover:bg-neutral-800",
         outline: "bg-black text-white hover:bg-neutral-800",
         secondary: "bg-black text-white hover:bg-neutral-800",
@@ -35,21 +34,34 @@ const buttonVariants = cva(
   }
 )
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean
+type ButtonBaseProps = {
+  variant?: VariantProps<typeof buttonVariants>["variant"]
+  size?: VariantProps<typeof buttonVariants>["size"]
+  className?: string
+  children: React.ReactNode
 }
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, size, asChild = false, ...props }, ref) => {
-    const Comp = asChild ? Slot : "button"
+type ButtonAsButton = ButtonBaseProps & React.ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined }
+type ButtonAsAnchor = ButtonBaseProps & React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string }
+
+export type ButtonProps = ButtonAsButton | ButtonAsAnchor
+
+const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
+  ({ className, variant, size, href, ...props }, ref) => {
+    const classes = cn(buttonVariants({ variant, size, className }))
+    if (href) {
+      // Remove props that are not valid for <a>
+      const { type, ...anchorProps } = props as ButtonAsAnchor
+      return (
+        <Link href={href} passHref legacyBehavior>
+          <a className={classes} ref={ref as React.Ref<HTMLAnchorElement>} {...anchorProps}>
+            {props.children}
+          </a>
+        </Link>
+      )
+    }
     return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        {...props}
-      />
+      <button className={classes} ref={ref as React.Ref<HTMLButtonElement>} {...props as ButtonAsButton} />
     )
   }
 )

@@ -62,7 +62,7 @@
 /* Typography System */
 @layer base {
   h1, .hero-headline {
-    @apply font-bold text-[48px] md:text-[64px] leading-[1.2];
+    @apply font-semibold text-[48px] md:text-[64px] leading-[1.2];
   }
 
   h2, .section-headline {
@@ -133,6 +133,11 @@
   /* Cards */
   .alpha-card {
     @apply bg-white p-[var(--space-sm)] rounded-[var(--radius-sm)];
+  }
+  
+  /* Section Content Card - matches FeatureCard styling */
+  .section-content {
+    @apply w-full rounded-[var(--radius-lg)] p-[var(--space-xl)];
   }
   
   /* Buttons */
@@ -298,13 +303,7 @@ a, a:visited, a:hover, a:active {
   color: var(--color-maroon);
 }
 
-.scheme-maroon {
-  background: var(--color-maroon);
-  color: #fff;
-}
-.scheme-maroon h1, .scheme-maroon h2, .scheme-maroon h3, .scheme-maroon .featurecard-heading {
-  color: var(--color-pink);
-}
+
 
 /* Tagline color auto-matching for color schemes */
 .scheme-blue .tagline {
