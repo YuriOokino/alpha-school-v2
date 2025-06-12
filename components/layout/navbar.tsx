@@ -90,7 +90,7 @@ export const navItems: NavItem[] = [
   },
   {
     title: "Events",
-    href: "#",
+    href: "/event",
     megaMenu: [],
     sidebar: <NewsCard />,
   },
@@ -102,7 +102,7 @@ export const navItems: NavItem[] = [
         label: "Resources",
         items: [
           { title: "Video Library", href: "/video-library", description: "Dive into Alpha School" },
-          { title: "Our Guides", href: "#", description: "Meet the amazing people at Alpha" },
+          { title: "Our Guides", href: "/guides", description: "Meet the amazing people at Alpha" },
         ],
       },
     ],
@@ -211,9 +211,9 @@ export function Navbar() {
         </nav>
         {/* CTA Button */}
         <div className="hidden md:block ml-8">
-          <Button className="text-white rounded-full font-semibold">
-            Learn more
-          </Button>
+          <Link href="/learn-more">
+            <Button variant="link">Learn more</Button>
+          </Link>
         </div>
         {/* MegaMenu rendered as sibling, not inside nav or li */}
         {activeNavItem && megaMenuGroups && (

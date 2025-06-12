@@ -1,3 +1,5 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 
@@ -26,17 +28,17 @@ export default function Footer() {
             <h3 className="text-base font-medium mb-2 pb-0">About</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#">
+                <Link href="/the-program#love-school">
                   Love School
                 </Link>
               </li>
               <li>
-                <Link href="#">
+                <Link href="/the-program#learn-2x">
                   Learn 2x in 2hrs
                 </Link>
               </li>
               <li>
-                <Link href="#">
+                <Link href="/the-program#learn-life-skills">
                   Learn Life Skills
                 </Link>
               </li>
@@ -48,12 +50,12 @@ export default function Footer() {
             <h3 className="text-base font-medium mb-2 pb-0">Resources</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#">
+                <Link href="/video-libary">
                   Alpha in Action
                 </Link>
               </li>
               <li>
-                <Link href="#">
+                <Link href="/locations">
                   Locations
                 </Link>
               </li>
@@ -63,7 +65,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#">
+                <Link href="/faq">
                   FAQs
                 </Link>
               </li>

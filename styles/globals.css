@@ -24,7 +24,7 @@
     
     /* Background Colors */
     --color-bg-light: #FFFFFF;     /* Light background */
-    --color-bg-muted: #F9FAFB;     /* Muted background */
+    --color-bg-muted: #EEEEEE;     /* Muted background */
     --color-bg-dark: #111827;      /* Dark background */
     
     /* Spacing System */
@@ -322,4 +322,23 @@ a, a:visited, a:hover, a:active {
 .scheme-maroon .tagline {
   background: var(--tagline-maroon-bg);
   color: var(--tagline-maroon-text);
+}
+
+@layer utilities {
+  .tag {
+    @apply px-2 rounded-[var(--radius-xs)] bg-[var(--color-primary)] text-white text-xs font-medium;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 0.75rem;
+    line-height: 1.2;
+  }
+}
+
+/* Learn More Test Carousel: Force 2 cards visible and centered */
+.learn-more-carousel .flex {
+  width: 100% !important;
+}
+.learn-more-carousel .flex > div {
+  flex: 0 0 50% !important;
+  max-width: 50% !important;
 }
