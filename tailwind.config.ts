@@ -9,7 +9,6 @@ const config = {
     "./src/**/*.{ts,tsx}",
     "*.{js,ts,jsx,tsx,mdx}",
   ],
-  prefix: "",
   theme: {
     container: {
       center: true,
@@ -19,25 +18,14 @@ const config = {
       },
     },
     extend: {
-      animation: {
-        scroll: 'scroll 40s linear infinite',
+      screens: {
+        sm: "480px",
+        md: "768px",
+        lg: "992px",
+        xl: "1280px",
+        xxl: "1440px",
       },
-      keyframes: {
-        scroll: {
-          '0%': { transform: 'translateX(0)' },
-          '100%': { transform: 'translateX(-50%)' },
-        },
-      },
-      fontFamily: {
-        sans: [
-          'DM Sans',
-          'Inter',
-          'Nunito Sans',
-          'ui-sans-serif',
-          'system-ui',
-          'sans-serif',
-        ],
-      },
+      // Essential colors for shadcn/ui components
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -45,8 +33,8 @@ const config = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: '#1B52CD',
-          foreground: '#fff',
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -64,10 +52,6 @@ const config = {
           DEFAULT: "hsl(var(--accent))",
           foreground: "hsl(var(--accent-foreground))",
         },
-        accentMint: '#CFF6E7',
-        accentPurple: '#A9A1E1',
-        accentPink: '#F9D6E5',
-        accentOffWhite: '#F8FAFC',
         popover: {
           DEFAULT: "hsl(var(--popover))",
           foreground: "hsl(var(--popover-foreground))",
@@ -76,18 +60,20 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        blue: {
-          700: "#1a56db",
-          800: "#1e429f",
-          900: "#233876",
-        },
       },
-      borderRadius: {
-        lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+      fontFamily: {
+        sans: ['var(--font-work-sans)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+      },
+      animation: {
+        scroll: 'scroll 40s linear infinite',
+        "accordion-down": "accordion-down 0.2s ease-out",
+        "accordion-up": "accordion-up 0.2s ease-out",
       },
       keyframes: {
+        scroll: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
+        },
         "accordion-down": {
           from: { height: "0" },
           to: { height: "var(--radix-accordion-content-height)" },
@@ -96,10 +82,6 @@ const config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-      },
-      animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
       },
     },
   },

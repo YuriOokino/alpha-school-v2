@@ -1,53 +1,63 @@
 "use client"
 
-import { useState } from "react"
-import TestimonialCard from "@/components/features/testimonial-card"
-import { Button } from "@/components/ui/button"
+import React, { useState } from "react"
 import { testimonials } from "@/content/testimonials"
+import SectionHeading from "@/components/features/section-heading"
 
 export default function TestimonialsSection() {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const visibleCards = 3.25
-  const cardWidth = 100 / visibleCards
+  const [activeIndex, setActiveIndex] = useState(0);
+  const visibleCards = 2.5;
+  const cardWidth = 430; // Reduced from 480px to 430px
 
   const prevTestimonial = () => {
-    setActiveIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1))
-  }
+    setActiveIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+  };
+
   const nextTestimonial = () => {
-    setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1))
-  }
+    setActiveIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+  };
 
   return (
-    <section className="alpha-section">
-      <h2 className="section-headline font-bold text-center mb-[var(--space-lg)] text-[#111827]">From Our Students</h2>
-      <div className="w-full flex justify-center mb-[var(--space-xl)]">
-        <div className="w-full max-w-[1280px] px-6 md:px-[var(--space-md)] aspect-video rounded-[var(--radius-lg)] overflow-hidden bg-black">
-          <iframe
-            src="https://player.vimeo.com/video/1033250050"
-            title="Student Testimonial Video"
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowFullScreen
-            className="w-full h-full border-0"
-          />
-        </div>
-      </div>
-      <div className="w-full bg-[hsl(var(--color-surface))] rounded-[var(--radius-lg)] p-[var(--space-xl)] relative">
+    <section className="alpha-section bg-white">
+      <SectionHeading 
+        title="From Our Students"
+        description="Hear from our students about their experience at Alpha School and how it has transformed their learning journey."
+        buttonText="Read more testimonials"
+        buttonHref="/testimonials"
+      />
+      
+      <div className="w-full bg-[var(--color-bg-muted)] rounded-[var(--radius-lg)] p-[var(--space-xl)] relative">
         <div className="relative flex items-center">
           <div className="overflow-hidden w-full">
             <div
-              className="flex transition-transform duration-500"
+              className="flex transition-transform duration-700 ease-in-out"
               style={{
-                width: `${(testimonials.length) * cardWidth}%`,
-                transform: `translateX(-${activeIndex * cardWidth}%)`,
+                width: `${testimonials.length * (100 / visibleCards)}%`,
+                transform: `translateX(-${activeIndex * (100 / visibleCards)}%)`,
               }}
             >
               {testimonials.map((testimonial, idx) => (
                 <div
                   key={idx}
-                  style={{ flex: '0 0 31%' }}
-                  className="px-2 max-w-[340px] flex-shrink-0"
+                  style={{ flex: `0 0 ${100 / visibleCards}%` }}
+                  className="px-2 max-w-[430px] flex-shrink-0"
                 >
-                  <TestimonialCard {...testimonial} />
+                  <div className="bg-white rounded-[var(--radius-md)] p-[var(--space-lg)] h-full">
+                    <div className="flex flex-col gap-[var(--space-md)]">
+                      <div className="flex items-center gap-[var(--space-sm)]">
+                        <img 
+                          src={testimonial.imageSrc} 
+                          alt={testimonial.name} 
+                          className="w-12 h-12 rounded-full object-cover"
+                        />
+                        <div>
+                          <h3 className="font-bold text-[var(--color-text-main)]">{testimonial.name}</h3>
+                          <p className="text-[var(--color-text-muted)] text-sm">{testimonial.grade}, {testimonial.age}</p>
+                        </div>
+                      </div>
+                      <p className="text-[var(--color-text-main)]">{testimonial.quote}</p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -60,7 +70,7 @@ export default function TestimonialsSection() {
             {testimonials.map((_, index) => (
               <button
                 key={index}
-                className={`w-3 h-3 rounded-full ${index === activeIndex ? 'bg-white' : 'bg-[#B0B0B0]'} transition-colors`}
+                className={`w-3 h-3 rounded-full ${index === activeIndex ? 'bg-[var(--color-warm-dark)]' : 'bg-[#B0B0B0]'} transition-colors`}
                 onClick={() => setActiveIndex(index)}
                 aria-label={`Go to slide ${index + 1}`}
               />

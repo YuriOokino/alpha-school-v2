@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import MainHeading from "@/components/ui/main-heading";
+import MainHeading from "@/components/layout/main-heading";
 import WhatsNextSection from "@/components/sections/whats-next-section";
 import Link from "next/link";
 import React from "react";

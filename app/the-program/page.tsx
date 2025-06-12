@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import FeatureCard from "@/components/features/feature-card";
 import { useState } from "react";
-import MainHeading from "@/components/ui/main-heading";
+import MainHeading from "@/components/layout/main-heading";
 import WhatsNextSection from "@/components/sections/whats-next-section";
 import Link from "next/link";
 

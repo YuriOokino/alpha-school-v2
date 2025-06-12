@@ -23,14 +23,14 @@ export function NewsCard() {
     <LocationCard
       newsHeading={<h3 className="text-xl font-bold mb-4">In the News</h3>}
       image="/assets/location-img-placeholder.webp"
-      title={<h6 className="font-bold text-[var(--color-maroon)] text-base mb-[var(--space-xs)]">This is a new headline</h6> as any}
+      title={<h6 className="font-bold text-[var(--color-warm-dark)] text-base mb-[var(--space-xs)]">This is a new headline</h6> as any}
       address=""
       city="Lorem ipsum dolor sit amet consectetur. Felis nibh vitae libero quis risus egestas arcu. Nec aliquet."
       tuition=""
       buttonText="Read more"
       buttonHref="#"
-      buttonClassName="mt-4 bg-[var(--color-maroon)] text-[var(--color-pink)] rounded-full px-4 py-2 font-semibold hover:bg-[var(--color-maroon)]/90 hover:text-[var(--color-pink)] transition-colors"
-      className="flex-1"
+      buttonClassName="mt-4 bg-[var(--color-warm-dark)] text-[var(--color-warm)] rounded-full px-4 py-2 font-semibold hover:bg-[var(--color-warm-dark)]/90 hover:text-[var(--color-warm)] transition-colors"
+      className="flex-1 bg-[var(--color-warm)]"
     />
   );
 }
@@ -49,7 +49,7 @@ export function MegaMenu({ groups, sidebar }: MegaMenuProps) {
         {groupColumns.map((group, idx) => (
           <div key={idx} className="flex-1">
             {group.label && (
-              <span className="inline-block mb-4 px-3 py-1 rounded bg-[var(--color-pink)] text-[var(--color-maroon)] font-semibold text-xs uppercase tracking-wide">
+              <span className="inline-block mb-4 px-3 py-1 rounded bg-[var(--color-warm)] text-[var(--color-warm-dark)] font-semibold text-xs uppercase tracking-wide">
                 {group.label}
               </span>
             )}
@@ -59,7 +59,6 @@ export function MegaMenu({ groups, sidebar }: MegaMenuProps) {
                   <Link href={item.href} className="flex flex-col group transition-colors">
                     <span className="font-medium flex items-center">
                       {item.title}
-                      
                     </span>
                     {item.description && (
                       <span className="text-sm text-gray-600">{item.description}</span>

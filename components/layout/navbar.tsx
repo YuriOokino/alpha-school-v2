@@ -14,52 +14,12 @@ interface DropdownItem {
   description?: string
 }
 
-interface LocationItem {
-  name: string
-  info: string
-  hasArrow?: boolean
-}
-
-interface LocationGroup {
-  title: string
-  items: LocationItem[]
-}
-
 interface NavItem {
   title: string
   href: string
   megaMenu: { label: string; items: DropdownItem[] }[]
   sidebar: React.ReactNode
 }
-
-const locationGroups: LocationGroup[] = [
-  {
-    title: "TEXAS",
-    items: [
-      { name: "Austin", info: "PK4-8", hasArrow: true },
-      { name: "Brownsville", info: "PK 8" },
-      { name: "Houston", info: "Opening August 2025" },
-      { name: "Fort Worth", info: "Opening August 2025" },
-    ],
-  },
-  {
-    title: "FLORIDA",
-    items: [
-      { name: "Miami", info: "K 10" },
-      { name: "Orlando", info: "Opening August 2025" },
-      { name: "Tampa", info: "Opening August 2025" },
-      { name: "Palm Beach", info: "Opening August 2025" },
-    ],
-  },
-  {
-    title: "MORE LOCATIONS",
-    items: [
-      { name: "New York City, New York", info: "Opening August 2025" },
-      { name: "Santa Barbara, Arizona", info: "Opening August 2025" },
-      { name: "Scottsdale, California", info: "Opening August 2025" },
-    ],
-  },
-]
 
 const newsItems = [
   "New campus opening in Dallas this fall",
@@ -83,7 +43,7 @@ export const navItems: NavItem[] = [
       {
         label: "Media",
         items: [
-          { title: "Alpha In Action", href: "#", description: "Creating a supportive environment" },
+          { title: "Alpha In Action", href: "/video-library", description: "Let our Students and parents show you what we're all about!" },
         ],
       },
     ],
@@ -91,7 +51,7 @@ export const navItems: NavItem[] = [
   },
   {
     title: "Admission",
-    href: "#",
+    href: "/admission",
     megaMenu: [],
     sidebar: null,
   },
@@ -164,16 +124,6 @@ export const navItems: NavItem[] = [
     sidebar: <NewsCard />,
   },
 ]
-
-// Refactor locationGroups to match MegaMenuGroup format
-const locationGroupsUnified = locationGroups.map(group => ({
-  label: group.title,
-  items: group.items.map(item => ({
-    title: item.name,
-    href: '#',
-    description: item.info,
-  })),
-}));
 
 export function Navbar() {
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null)

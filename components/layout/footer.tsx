@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export default function Footer() {
   return (
-    <footer className="bg-[hsl(var(--color-surface))] text-[hsl(var(--color-text-main))]">
+    <footer className="bg-[var(--color-bg-muted)] text-[var(--color-text-main)]">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
           {/* Logo and Contact */}

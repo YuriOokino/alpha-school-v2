@@ -8,6 +8,42 @@
  * for the Alpha School website. It's optimized for AI management and consistency.
  */
 
+/* CSS Custom Properties (Design Tokens) */
+@layer base {
+  :root {
+    /* Color System */
+    --color-primary: #0000ED;      /* Main brand color - CTAs, links, highlights */
+    --color-primary-light: #B9EDFF; /* Light blue - Section backgrounds, cards */
+    --color-warm: #FCCFCF;         /* Warm pink - Testimonial backgrounds */
+    --color-warm-dark: #5C2727;    /* Warm maroon - Headings, buttons */
+    
+    /* Text Colors */
+    --color-text-main: #111827;    /* Primary text */
+    --color-text-muted: #6B7280;   /* Secondary text */
+    --color-text-light: #FFFFFF;   /* Text on dark backgrounds */
+    
+    /* Background Colors */
+    --color-bg-light: #FFFFFF;     /* Light background */
+    --color-bg-muted: #F9FAFB;     /* Muted background */
+    --color-bg-dark: #111827;      /* Dark background */
+    
+    /* Spacing System */
+    --space-xs: 8px;    /* Element-to-element nudges */
+    --space-sm: 16px;   /* Internal padding in cards, buttons */
+    --space-md: 24px;   /* Between titles, groups */
+    --space-lg: 48px;   /* Section content spacing */
+    --space-xl: 64px;   /* Section top/bottom margin/padding */
+    --space-3xl: 96px;  /* Extra-large vertical spacing */
+    
+    /* Border Radius System */
+    --radius-xs: 8px;    /* Small inputs, chips, badges */
+    --radius-sm: 12px;   /* Cards in structured layouts */
+    --radius-md: 16px;   /* Image containers, info panels */
+    --radius-lg: 24px;   /* Section blocks, modals */
+    --radius-pill: 9999px; /* Buttons, avatars, tags */
+  }
+}
+
 /* Base Styles */
 @layer base {
   html {
@@ -46,318 +82,110 @@
   }
 }
 
-/* Custom Utility Classes */
+/* Layout Utilities */
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-  
-  /* Alpha School Brand Utilities */
-  .alpha-blue {
-    @apply text-[#0000ED];
-  }
-  
-  .alpha-blue-bg {
-    @apply bg-[#0000ED];
-  }
-
-  /* Warm Color Scheme Utilities */
-  .alpha-warm {
-    @apply text-[#5C2727];
-  }
-  
-  .alpha-warm-bg {
-    @apply bg-[#5C2727];
-  }
-
-  .alpha-warm-light {
-    @apply text-[#FCCFCF];
-  }
-  
-  .alpha-warm-light-bg {
-    @apply bg-[#FCCFCF];
-  }
-  
-  .alpha-green-tag {
-    @apply bg-[#B9EDFF] text-[#111827] px-[var(--space-sm)] py-[var(--space-xs)] rounded-[var(--radius-xs)] inline-block font-medium;
-  }
-  
   .alpha-section {
-    @apply max-w-[1280px] mx-auto px-6 md:px-[var(--space-md)] mb-[var(--space-xl)] py-[var(--space-xl)];
+    @apply max-w-[1280px] mx-auto px-6 md:px-[var(--space-md)] my-[var(--space-md)] py-[var(--space-xl)];
   }
   
-  .alpha-heading {
-    @apply section-headline text-center mb-[var(--space-sm)] text-[#111827];
+  .alpha-container {
+    @apply max-w-[1280px] mx-auto px-6 md:px-[var(--space-md)];
+  }
+}
+
+/* Color Scheme Utilities */
+@layer utilities {
+  /* Primary Color Scheme */
+  .scheme-primary {
+    @apply bg-[var(--color-primary)] text-[var(--color-text-light)];
+  }
+  .scheme-primary h1, .scheme-primary h2, .scheme-primary h3 {
+    @apply text-[var(--color-primary-light)];
   }
   
+  /* Light Blue Scheme */
+  .scheme-light {
+    @apply bg-[var(--color-primary-light)] text-[var(--color-text-main)];
+  }
+  .scheme-light h1, .scheme-light h2, .scheme-light h3 {
+    @apply text-[var(--color-primary)];
+  }
+  
+  /* Warm Color Scheme */
+  .scheme-warm {
+    @apply bg-[var(--color-warm)] text-[var(--color-warm-dark)];
+  }
+  .scheme-warm h1, .scheme-warm h2, .scheme-warm h3 {
+    @apply text-[var(--color-warm-dark)];
+  }
+  
+  /* Maroon Color Scheme */
+  .scheme-maroon {
+    @apply bg-[var(--color-warm-dark)] text-[var(--color-text-light)];
+  }
+  .scheme-maroon h1, .scheme-maroon h2, .scheme-maroon h3 {
+    @apply text-[var(--color-warm)];
+  }
+}
+
+/* Component Utilities */
+@layer utilities {
+  /* Cards */
   .alpha-card {
     @apply bg-white p-[var(--space-sm)] rounded-[var(--radius-sm)];
   }
   
+  /* Buttons */
   .alpha-btn-primary {
-    @apply bg-[#0000ED] text-white hover:bg-[#0000CC] rounded-[var(--radius-pill)] px-[var(--space-lg)] py-[var(--space-sm)] font-semibold transition-colors;
+    @apply bg-[var(--color-primary)] text-white hover:bg-[#0000CC] rounded-[var(--radius-pill)] px-[var(--space-lg)] py-[var(--space-sm)] font-semibold transition-colors;
   }
   
   .alpha-btn-outline {
-    @apply border border-[#0000ED] text-[#0000ED] hover:bg-[#0000ED] hover:text-white rounded-[var(--radius-pill)] px-[var(--space-lg)] py-[var(--space-sm)] font-semibold transition-colors;
+    @apply border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)] hover:text-white rounded-[var(--radius-pill)] px-[var(--space-lg)] py-[var(--space-sm)] font-semibold transition-colors;
   }
-
+  
   .alpha-btn-warm {
-    @apply bg-[#FCCFCF] text-[#5C2727] hover:bg-[#F5B5B5] rounded-full px-8 py-2 font-semibold transition-colors;
+    @apply bg-[var(--color-warm)] text-[var(--color-warm-dark)] hover:bg-[#F5B5B5] rounded-[var(--radius-pill)] px-[var(--space-lg)] py-[var(--space-sm)] font-semibold transition-colors;
   }
   
-  .alpha-btn-warm-secondary {
-    @apply bg-[#5C2727] text-[#FFD1D1] hover:bg-[#3d2323] rounded-full px-8 py-2 font-semibold transition-colors;
+  /* Tags and Labels */
+  .alpha-tag {
+    @apply bg-[var(--color-primary-light)] text-[var(--color-text-main)] px-[var(--space-sm)] py-[var(--space-xs)] rounded-[var(--radius-xs)] inline-block font-medium;
   }
   
-  .alpha-dropdown {
-    @apply absolute top-full mt-[var(--space-xs)] w-64 bg-white text-[#111827] rounded-[var(--radius-sm)] py-[var(--space-sm)] z-50;
-  }
-
-  .alpha-testimonial {
-    @apply bg-[#FCCFCF] text-[#5C2727] p-6 rounded-lg;
-  }
-
-  /* New Border Radius Utilities */
-  .radius-xs {
-    @apply rounded-[var(--radius-xs)];
-  }
-
-  .radius-sm {
-    @apply rounded-[var(--radius-sm)];
-  }
-
-  .radius-md {
-    @apply rounded-[var(--radius-md)];
-  }
-
-  .radius-lg {
-    @apply rounded-[var(--radius-lg)];
-  }
-
-  .radius-pill {
-    @apply rounded-[var(--radius-pill)];
-  }
-
-  /* Spacing Utilities */
-  .space-xs {
-    @apply gap-[var(--space-xs)];
-  }
-
-  .space-sm {
-    @apply gap-[var(--space-sm)];
-  }
-
-  .space-md {
-    @apply gap-[var(--space-md)];
-  }
-
-  .space-lg {
-    @apply gap-[var(--space-lg)];
-  }
-
-  .space-xl {
-    @apply gap-[var(--space-xl)];
-  }
-
-  /* Padding Utilities */
-  .p-xs {
-    @apply p-[var(--space-xs)];
-  }
-
-  .p-sm {
-    @apply p-[var(--space-sm)];
-  }
-
-  .p-md {
-    @apply p-[var(--space-md)];
-  }
-
-  .p-lg {
-    @apply p-[var(--space-lg)];
-  }
-
-  .p-xl {
-    @apply p-[var(--space-xl)];
-  }
-
-  /* Margin Utilities */
-  .m-xs {
-    @apply m-[var(--space-xs)];
-  }
-
-  .m-sm {
-    @apply m-[var(--space-sm)];
-  }
-
-  .m-md {
-    @apply m-[var(--space-md)];
-  }
-
-  .m-lg {
-    @apply m-[var(--space-lg)];
-  }
-
-  .m-xl {
-    @apply m-[var(--space-xl)];
+  .alpha-tag-warm {
+    @apply bg-[var(--color-warm)] text-[var(--color-warm-dark)] px-[var(--space-sm)] py-[var(--space-xs)] rounded-[var(--radius-xs)] inline-block font-medium;
   }
 }
 
-/* CSS Custom Properties (Design Tokens) */
-@layer base {
-  :root {
-    /* Base Design System */
-    --background: 0 0% 100%;
-    --foreground: 222.2 47.4% 11.2%;
-    
-    /* Spacing System */
-    --space-xs: 8px;    /* Element-to-element nudges */
-    --space-sm: 16px;   /* Internal padding in cards, buttons */
-    --space-md: 24px;   /* Between titles, groups */
-    --space-lg: 48px;   /* Section content spacing */
-    --space-xl: 64px;   /* Section top/bottom margin/padding */
-    --space-3xl: 96px;  /* Extra-large vertical spacing for hero/main headings */
-    
-    /* Border Radius System */
-    --radius-xs: 8px;    /* Small inputs, chips, or badges */
-    --radius-sm: 12px;   /* Cards in structured layouts */
-    --radius-md: 16px;   /* Image containers, info panels */
-    --radius-lg: 24px;   /* Section blocks, modals, hero callouts */
-    --radius-pill: 9999px; /* All buttons, avatars, tags */
-    
-    /* New Color Scheme */
-    --color-primary: 240 100% 47%;      /* #0000ED - CTAs, links, highlights */
-    --color-secondary: 195 100% 87%;    /* #B9EDFF - Section backgrounds, cards, hover surfaces */
-    --color-accent: 0 0% 100%;          /* #FFFFFF - Text on dark, card fills */
-    --color-text-main: 222.2 47.4% 11.2%; /* #111827 - Primary body and heading text */
-    --color-text-muted: 220 13% 46%;    /* #6B7280 - Captions, UI hints */
-    --color-surface: 0 0% 93.3%;       /* #EEEEEE - Light panels and contrast breaks */
-
-    /* Warm Color Scheme */
-    --color-warm: 0 100% 91%;           /* #FCCFCF - Testimonial backgrounds, emotional callouts */
-    --color-warm-dark: 0 38% 26%;       /* #5C2727 - Headings, button fills, high contrast text */
-    --color-warm-accent: 0 0% 100%;     /* #FFFFFF - Text on warm buttons or backgrounds */
-    --color-warm-text: 0 38% 26%;       /* #5C2727 - Section headers or spotlight content */
-    --color-warm-text-muted: 220 13% 46%; /* #6B7280 - Supporting copy, optional UI details */
-    --color-warm-surface: 0 0% 100%;    /* #FFFFFF - Default background for contrast balance */
-
-    /* Typography Scale */
-    --font-size-hero: clamp(48px, 5vw, 64px);
-    --font-size-section: 32px;
-    --font-size-card: 24px;
-    --font-size-body: 16px;
-    --font-size-caption: 14px;
-
-    /* Line Heights */
-    --line-height-hero: 1.2;
-    --line-height-section: 1.3;
-    --line-height-card: 1.4;
-    --line-height-body: 1.6;
-    --line-height-caption: 1.5;
-
-    /* Component Colors */
-    --card: var(--color-accent);
-    --card-foreground: var(--color-text-main);
-    --popover: var(--color-accent);
-    --popover-foreground: var(--color-text-main);
-    --primary: var(--color-primary);
-    --primary-foreground: var(--color-accent);
-    --secondary: var(--color-secondary);
-    --secondary-foreground: var(--color-text-main);
-    --muted: var(--color-surface);
-    --muted-foreground: var(--color-text-muted);
-    --accent: var(--color-secondary);
-    --accent-foreground: var(--color-text-main);
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: var(--color-primary);
-    
-    /* Chart Colors */
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    
-    /* Sidebar Variables */
-    --sidebar-background: var(--color-surface);
-    --sidebar-foreground: var(--color-text-main);
-    --sidebar-primary: var(--color-primary);
-    --sidebar-primary-foreground: var(--color-accent);
-    --sidebar-accent: var(--color-secondary);
-    --sidebar-accent-foreground: var(--color-text-main);
-    --sidebar-border: var(--border);
-    --sidebar-ring: var(--color-primary);
-
-    /* New Global Variables */
-    --color-pink: #FCCFCF;
-    --color-maroon: #5C2727;
-    --tagline-primary-bg: #0000ED;
-    --tagline-primary-text: #fff;
-    --tagline-accent-bg: var(--color-pink);
-    --tagline-accent-text: var(--color-maroon);
-    --tagline-maroon-bg: var(--color-maroon);
-    --tagline-maroon-text: #fff;
-  }
+/* Spacing Utilities */
+@layer utilities {
+  .space-xs { @apply gap-[var(--space-xs)]; }
+  .space-sm { @apply gap-[var(--space-sm)]; }
+  .space-md { @apply gap-[var(--space-md)]; }
+  .space-lg { @apply gap-[var(--space-lg)]; }
+  .space-xl { @apply gap-[var(--space-xl)]; }
   
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    
-    /* Dark Mode Color Overrides */
-    --color-primary: 240 100% 60%;      /* Brighter primary for dark mode */
-    --color-secondary: 195 100% 20%;    /* Darker secondary for dark mode */
-    --color-accent: 222.2 84% 4.9%;     /* Dark background */
-    --color-text-main: 210 40% 98%;     /* Light text */
-    --color-text-muted: 215 20.2% 65.1%; /* Muted text for dark mode */
-    --color-surface: 222.2 47.4% 11.2%; /* Dark surface color */
+  .p-xs { @apply p-[var(--space-xs)]; }
+  .p-sm { @apply p-[var(--space-sm)]; }
+  .p-md { @apply p-[var(--space-md)]; }
+  .p-lg { @apply p-[var(--space-lg)]; }
+  .p-xl { @apply p-[var(--space-xl)]; }
+  
+  .m-xs { @apply m-[var(--space-xs)]; }
+  .m-sm { @apply m-[var(--space-sm)]; }
+  .m-md { @apply m-[var(--space-md)]; }
+  .m-lg { @apply m-[var(--space-lg)]; }
+  .m-xl { @apply m-[var(--space-xl)]; }
+}
 
-    /* Warm Colors Dark Mode */
-    --color-warm: 0 38% 20%;            /* Darker warm background */
-    --color-warm-dark: 0 100% 91%;      /* Light warm text */
-    --color-warm-accent: 0 0% 100%;     /* White accent */
-    --color-warm-text: 0 100% 91%;      /* Light warm text */
-    --color-warm-text-muted: 0 0% 80%;  /* Muted warm text */
-    --color-warm-surface: 0 38% 15%;    /* Dark warm surface */
-
-    /* Component Colors */
-    --card: var(--color-accent);
-    --card-foreground: var(--color-text-main);
-    --popover: var(--color-accent);
-    --popover-foreground: var(--color-text-main);
-    --primary: var(--color-primary);
-    --primary-foreground: var(--color-accent);
-    --secondary: var(--color-secondary);
-    --secondary-foreground: var(--color-text-main);
-    --muted: var(--color-surface);
-    --muted-foreground: var(--color-text-muted);
-    --accent: var(--color-secondary);
-    --accent-foreground: var(--color-text-main);
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: var(--color-primary);
-    
-    /* Chart Colors for Dark Mode */
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    
-    /* Sidebar Dark Mode */
-    --sidebar-background: var(--color-accent);
-    --sidebar-foreground: var(--color-text-main);
-    --sidebar-primary: var(--color-primary);
-    --sidebar-primary-foreground: var(--color-accent);
-    --sidebar-accent: var(--color-secondary);
-    --sidebar-accent-foreground: var(--color-text-main);
-    --sidebar-border: var(--border);
-    --sidebar-ring: var(--color-primary);
-  }
+/* Border Radius Utilities */
+@layer utilities {
+  .radius-xs { @apply rounded-[var(--radius-xs)]; }
+  .radius-sm { @apply rounded-[var(--radius-sm)]; }
+  .radius-md { @apply rounded-[var(--radius-md)]; }
+  .radius-lg { @apply rounded-[var(--radius-lg)]; }
+  .radius-pill { @apply rounded-[var(--radius-pill)]; }
 }
 
 /* 
@@ -381,7 +209,7 @@
  *    - xs (8px): Small inputs, chips, or badges
  *    - sm (12px): Cards in structured layouts
  *    - md (16px): Image containers, info panels
- *    - lg (24px): Section blocks, modals, hero callouts
+ *    - lg (24px): Section blocks, modals
  *    - pill (9999px): All buttons, avatars, tags
  * 
  * 4. Color Schemes:
