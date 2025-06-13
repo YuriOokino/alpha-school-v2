@@ -12,6 +12,8 @@
 @layer base {
   :root {
     /* Color System */
+    --background: #FFFFFF;     /* Default background color */
+    --text: #000000;          /* Default text color */
     --color-primary: #0000ED;      /* Main brand color - CTAs, links, highlights */
     --color-primary-light: #B9EDFF; /* Light blue - Section backgrounds, cards */
     --color-warm: #FCCFCF;         /* Warm pink - Testimonial backgrounds */
@@ -51,11 +53,11 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-[var(--background)] text-[var(--text)];
   }
 
-  * {
-    @apply border-border;
+  a, a:visited, a:hover, a:active {
+    color: inherit;
   }
 }
 
@@ -70,7 +72,7 @@
   }
 
   h3, .card-header {
-    @apply font-semibold text-[24px] leading-[1.4];
+    @apply font-semibold text-[24px] leading-[1.2];
   }
 
   p, .body-text {
@@ -79,6 +81,29 @@
 
   .caption, .text-hint {
     @apply font-normal text-[14px] leading-[1.5] text-[#6B7280];
+  }
+
+  /* Custom heading style utilities for flexible font styling */
+  .heading-style-h1 {
+    @apply font-semibold text-[48px] md:text-[64px] leading-[1.2];
+  }
+  .heading-style-h2 {
+    @apply font-semibold text-[40px] md:text-[48px] leading-[1.2];
+  }
+  .heading-style-h3 {
+    @apply font-semibold text-[24px] leading-[1.2];
+  }
+  .heading-style-h4 {
+    @apply font-semibold text-[20px] leading-[1.4];
+  }
+  .heading-style-h5 {
+    @apply font-semibold text-[16px] leading-[1.4];
+  }
+  .heading-style-h6 {
+    @apply font-semibold text-[14px] leading-[1.4];
+  }
+  .heading-style-uppercase {
+    @apply font-normal text-[16px] uppercase;
   }
 }
 
@@ -96,26 +121,26 @@
 /* Color Scheme Utilities */
 @layer utilities {
   /* Primary Color Scheme */
-  .scheme-primary {
+  .scheme-blue {
     @apply bg-[var(--color-primary)] text-[var(--color-text-light)];
   }
-  .scheme-primary h1, .scheme-primary h2, .scheme-primary h3 {
+  .scheme-blue h1, .scheme-blue h2, .scheme-blue h3 {
     @apply text-[var(--color-primary-light)];
   }
   
   /* Light Blue Scheme */
-  .scheme-light {
+  .scheme-lightblue {
     @apply bg-[var(--color-primary-light)] text-[var(--color-text-main)];
   }
-  .scheme-light h1, .scheme-light h2, .scheme-light h3 {
+  .scheme-lightblue h1, .scheme-lightblue h2, .scheme-lightblue h3 {
     @apply text-[var(--color-primary)];
   }
   
   /* Warm Color Scheme */
-  .scheme-warm {
+  .scheme-pink {
     @apply bg-[var(--color-warm)] text-[var(--color-warm-dark)];
   }
-  .scheme-warm h1, .scheme-warm h2, .scheme-warm h3 {
+  .scheme-pink h1, .scheme-pink h2, .scheme-pink h3 {
     @apply text-[var(--color-warm-dark)];
   }
   
@@ -132,10 +157,10 @@
 @layer utilities {
   /* Cards */
   .alpha-card {
-    @apply bg-white p-[var(--space-sm)] rounded-[var(--radius-sm)];
+    @apply p-[var(--space-sm)] rounded-[var(--radius-sm)];
   }
   
-  /* Section Content Card - matches FeatureCard styling */
+  /* Section Content Card */
   .section-content {
     @apply w-full rounded-[var(--radius-lg)] p-[var(--space-xl)];
   }
@@ -152,14 +177,18 @@
   .alpha-btn-warm {
     @apply bg-[var(--color-warm)] text-[var(--color-warm-dark)] hover:bg-[#F5B5B5] rounded-[var(--radius-pill)] px-[var(--space-lg)] py-[var(--space-sm)] font-semibold transition-colors;
   }
-  
-  /* Tags and Labels */
-  .alpha-tag {
-    @apply bg-[var(--color-primary-light)] text-[var(--color-text-main)] px-[var(--space-sm)] py-[var(--space-xs)] rounded-[var(--radius-xs)] inline-block font-medium;
+
+  /* Tags */
+  .tag-default {
+    @apply px-[var(--space-sm)] py-[var(--space-xs)] rounded-[var(--radius-xs)] bg-[var(--color-bg-muted)] text-[var(--color-text-main)] text-xs font-medium inline-block;
   }
   
-  .alpha-tag-warm {
-    @apply bg-[var(--color-warm)] text-[var(--color-warm-dark)] px-[var(--space-sm)] py-[var(--space-xs)] rounded-[var(--radius-xs)] inline-block font-medium;
+  .tag-blue {
+    @apply px-[var(--space-sm)] py-[var(--space-xs)] rounded-[var(--radius-xs)] bg-[var(--color-primary)] text-white text-xs font-medium inline-block;
+  }
+  
+  .tag-pink {
+    @apply px-[var(--space-sm)] py-[var(--space-xs)] rounded-[var(--radius-xs)] bg-[var(--color-warm)] text-[var(--color-warm-dark)] text-xs font-medium inline-block;
   }
 }
 
@@ -191,6 +220,22 @@
   .radius-md { @apply rounded-[var(--radius-md)]; }
   .radius-lg { @apply rounded-[var(--radius-lg)]; }
   .radius-pill { @apply rounded-[var(--radius-pill)]; }
+}
+
+/* Special Cases */
+/* Learn More Test Carousel: Force 2 cards visible and centered */
+.learn-more-carousel .flex {
+  width: 100% !important;
+}
+.learn-more-carousel .flex > div {
+  flex: 0 0 50% !important;
+  max-width: 50% !important;
+}
+
+/* Remove left and right padding for alpha-card when no-x-padding is present */
+.alpha-card.no-x-padding {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 /* 
@@ -260,84 +305,6 @@
  * </section>
  */
 
-a, a:visited, a:hover, a:active {
-  color: inherit;
-
-}
-
-.tagline-primary {
-  background: var(--tagline-primary-bg);
-  color: var(--tagline-primary-text);
-}
-.tagline-accent {
-  background: var(--tagline-accent-bg);
-  color: var(--tagline-accent-text);
-}
-.tagline-maroon {
-  background: var(--tagline-maroon-bg);
-  color: var(--tagline-maroon-text);
-}
-
-/* Color Scheme Utility Classes */
-.scheme-blue {
-  background: #0000ED;
-  color: #fff;
-}
-.scheme-blue h1, .scheme-blue h2, .scheme-blue h3, .scheme-blue .featurecard-heading {
-  color: #B9EDFF;
-}
-
-.scheme-lightblue {
-  background: #B9EDFF;
-  color: #111827;
-}
-.scheme-lightblue h1, .scheme-lightblue h2, .scheme-lightblue h3, .scheme-lightblue .featurecard-heading {
-  color: #0000ED;
-}
-
-.scheme-pink {
-  background: var(--color-pink);
-  color: var(--color-maroon);
-}
-.scheme-pink h1, .scheme-pink h2, .scheme-pink h3, .scheme-pink .featurecard-heading {
-  color: var(--color-maroon);
-}
-
-
-
-/* Tagline color auto-matching for color schemes */
-.scheme-blue .tagline {
-  background: #B9EDFF;
-  color: #0000ED;
-}
-.scheme-lightblue .tagline {
-  background: var(--tagline-primary-bg);
-  color: var(--tagline-primary-text);
-}
-.scheme-pink .tagline {
-  background: var(--tagline-accent-bg);
-  color: var(--tagline-accent-text);
-}
-.scheme-maroon .tagline {
-  background: var(--tagline-maroon-bg);
-  color: var(--tagline-maroon-text);
-}
-
-@layer utilities {
-  .tag {
-    @apply px-2 rounded-[var(--radius-xs)] bg-[var(--color-primary)] text-white text-xs font-medium;
-    padding-top: 6px;
-    padding-bottom: 6px;
-    font-size: 0.75rem;
-    line-height: 1.2;
-  }
-}
-
-/* Learn More Test Carousel: Force 2 cards visible and centered */
-.learn-more-carousel .flex {
-  width: 100% !important;
-}
-.learn-more-carousel .flex > div {
-  flex: 0 0 50% !important;
-  max-width: 50% !important;
+.alpha-card.sidebar-variant {
+  padding: 0 !important;
 }

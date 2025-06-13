@@ -23,7 +23,7 @@ const InfoIcon = () => (
 
 export default function LocationCard({ image, title, address, city, tuition, buttonText = "Apply Now", buttonHref = "#", buttonClassName = "", className = "", newsHeading }: LocationCardProps) {
   return (
-    <Card className={`scheme-warm rounded-[var(--radius-md)] p-[var(--space-md)] flex flex-col h-full border-0 shadow-none ${className}`}>
+    <Card className={`scheme-pink rounded-[var(--radius-md)] p-[var(--space-md)] flex flex-col h-full border-0 shadow-none ${className}`}>
       {newsHeading && <div>{newsHeading}</div>}
       <div className="w-full aspect-video rounded-[var(--radius-sm)] overflow-hidden mb-[var(--space-md)]">
         <Image src={image} alt={typeof title === 'string' ? title : ''} width={400} height={225} className="object-cover w-full h-full" />

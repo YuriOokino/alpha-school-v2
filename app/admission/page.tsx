@@ -364,7 +364,7 @@ export default function AdmissionPage() {
       {/* New Alpha Section with Colored Content Card */}
       <section className="alpha-section">
         <h2 className="section-headline text-center mb-8">Important details</h2>
-        <div className="section-content scheme-light">
+        <div className="section-content scheme-lightblue">
           <div className="grid md:grid-cols-2 gap-12">
             {/* Left Column - Important Details */}
             <div className="space-y-8">

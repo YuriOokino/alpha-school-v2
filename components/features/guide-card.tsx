@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export function Tagline({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <span className={`inline-block bg-[#0000ED] text-white text-xs rounded px-2 py-0.5 mb-2 w-max ${className}`}>{children}</span>
+    <span className={`tag-blue ${className}`}>{children}</span>
   );
 }
 
@@ -31,7 +31,7 @@ export default function GuideCard({ image, name, role, bio, className = "" }: Gu
           className="transition-colors duration-500 ease-in-out rounded-[var(--radius-md)] p-4 m-4 cursor-pointer bg-[var(--color-primary-light)]"
         >
           <div className={"transition-all duration-300 ease-in-out flex flex-col gap-2 items-start " + (hovered ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100 h-auto overflow-visible')}>
-            <span className="tag">{role}</span>
+            <span className="tag-default">{role}</span>
             <h3 className="text-[var(--color-text-main)] font-light uppercase text-lg leading-tight">{name}</h3>
           </div>
           <p className={"text-sm leading-snug transition-all duration-300 ease-in-out m-0 " + (hovered ? 'opacity-100 h-auto overflow-visible' : 'opacity-0 h-0 overflow-hidden')}>{bio}</p>

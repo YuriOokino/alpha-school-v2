@@ -28,7 +28,7 @@ export default function LocationsPage() {
                 buttonText={location.buttonText}
                 buttonHref={location.buttonHref}
                 newsHeading={location.newsHeading}
-                className="scheme-light"
+                className="scheme-lightblue"
               />
             ))}
           </div>

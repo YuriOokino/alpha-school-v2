@@ -6,7 +6,8 @@ import { ChevronRight, ChevronDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useState, useRef } from 'react'
 import React from 'react'
-import { MegaMenu, NewsCard } from '@/components/features/mega-menu'
+import { MegaMenu } from '@/components/features/mega-menu'
+import NewsCarouselSidebar from '@/components/features/news-carousel-sidebar'
 
 interface DropdownItem {
   title: string
@@ -47,7 +48,7 @@ export const navItems: NavItem[] = [
         ],
       },
     ],
-    sidebar: <NewsCard />,
+    sidebar: <NewsCarouselSidebar />,
   },
   {
     title: "Admission",
@@ -86,13 +87,13 @@ export const navItems: NavItem[] = [
         ],
       },
     ],
-    sidebar: <NewsCard />,
+    sidebar: <NewsCarouselSidebar />,
   },
   {
     title: "Events",
     href: "/events",
     megaMenu: [],
-    sidebar: <NewsCard />,
+    sidebar: <NewsCarouselSidebar />,
   },
   {
     title: "Resources",
@@ -106,7 +107,7 @@ export const navItems: NavItem[] = [
         ],
       },
     ],
-    sidebar: <NewsCard />,
+    sidebar: <NewsCarouselSidebar />,
   },
   {
     title: "Insights",
@@ -115,13 +116,12 @@ export const navItems: NavItem[] = [
       {
         label: "Insights",
         items: [
-          { title: "Research", href: "#", description: "Our educational approach" },
-          { title: "Success Stories", href: "#", description: "Student and parent testimonials" },
-          { title: "In the News", href: "#", description: "Media coverage and press" },
+          { title: "Blog", href: "/blog", description: "Blog articles" },
+          { title: "In the News", href: "/news", description: "Media coverage and press" },
         ],
       },
     ],
-    sidebar: <NewsCard />,
+    sidebar: <NewsCarouselSidebar />,
   },
 ]
 
@@ -202,7 +202,9 @@ export function Navbar() {
                 >
                   {item.title}
                   {item.megaMenu && item.megaMenu.length > 0 && (
-                    <ChevronRight className="h-4 w-4 ml-1" />
+                    <ChevronRight
+                      className={`h-4 w-4 ml-1 transition-transform duration-200 ${activeDropdown === item.title ? 'rotate-90' : ''}`}
+                    />
                   )}
                 </Link>
               </li>

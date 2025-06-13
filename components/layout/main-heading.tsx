@@ -18,18 +18,19 @@ export default function MainHeading({
   variant = 'default'
 }: MainHeadingProps) {
   const getVariantClasses = () => {
-    switch (variant) {
-      case 'primary':
-        return 'scheme-primary';
-      case 'light':
-        return 'scheme-light';
-      case 'warm':
-        return 'scheme-warm';
-      case 'maroon':
-        return 'scheme-maroon';
-      default:
-        return '';
+    if (variant === 'primary') {
+      return 'scheme-blue';
     }
+    if (variant === 'light') {
+      return 'scheme-lightblue';
+    }
+    if (variant === 'warm') {
+      return 'scheme-pink';
+    }
+    if (variant === 'maroon') {
+      return 'scheme-maroon';
+    }
+    return '';
   };
 
   const variantClasses = getVariantClasses();

@@ -125,7 +125,7 @@ export default function TheProgramPage() {
           }
           className="scheme-lightblue"
         >
-          <span className="block tagline font-bold uppercase tracking-wide mb-6 text-sm rounded px-3 py-1 w-max">ALPHA SCHOOL | COMMITMENT #1</span>
+          <span className="tag-blue mb-6">ALPHA SCHOOL | COMMITMENT #1</span>
           <h2 className="text-[2rem] font-extrabold mb-4">Kids Will Love School</h2>
           <p className="mb-4">At Alpha, we believe that when engagement meets high standards, it nurtures a lifelong passion for learning.</p>
           <ul className="list-disc pl-6 space-y-3">
@@ -174,7 +174,7 @@ export default function TheProgramPage() {
           }
           className="scheme-blue"
         >
-          <span className="block tagline font-bold uppercase tracking-wide mb-6 text-sm rounded px-3 py-1 w-max">ALPHA SCHOOL | COMMITMENT #2</span>
+          <span className="tag-blue mb-6">ALPHA SCHOOL | COMMITMENT #2</span>
           <h2 className="text-[2rem] font-extrabold mb-4">Learn 2X in 2 Hours</h2>
           <p className="mb-4">Through advanced technologies and mastery-based learning, students at Alpha complete core subjects in just two hours daily.</p>
           <ul className="list-disc pl-6 space-y-3 mb-4">
@@ -225,7 +225,7 @@ export default function TheProgramPage() {
           }
           className="scheme-lightblue"
         >
-          <span className="block tagline font-bold uppercase tracking-wide mb-6 text-sm rounded px-3 py-1 w-max">ALPHA SCHOOL | COMMITMENT #3</span>
+          <span className="tag-blue mb-6">ALPHA SCHOOL | COMMITMENT #3</span>
           <h2 className="text-[2rem] font-extrabold mb-4">Life Skills for the Future</h2>
           <p className="mb-4">Alpha isn't just about academics. We're preparing students for life by teaching essential, actionable skills.</p>
           <ul className="list-disc pl-6 space-y-3 mb-4">

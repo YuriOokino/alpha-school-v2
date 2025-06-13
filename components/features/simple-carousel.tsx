@@ -8,6 +8,9 @@ interface SimpleCarouselProps {
   visibleCards?: number;
   className?: string;
   showNavigation?: boolean;
+  activeIndex?: number;
+  onIndexChange?: (index: number) => void;
+  itemClassName?: string;
 }
 
 export default function SimpleCarousel({
@@ -15,55 +18,30 @@ export default function SimpleCarousel({
   renderItem,
   visibleCards = 3,
   className = "",
-  showNavigation = true
+  showNavigation = true,
+  activeIndex: controlledIndex,
+  onIndexChange,
+  itemClassName = "px-2"
 }: SimpleCarouselProps) {
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [internalIndex, setInternalIndex] = useState(0);
+  const activeIndex = controlledIndex ?? internalIndex;
+  const setActiveIndex = onIndexChange ?? setInternalIndex;
   const cardWidth = 100 / visibleCards;
 
   const nextItem = () => {
-    setActiveIndex((prev) => (prev + 1) % items.length);
+    const newIndex = (activeIndex + 1) % items.length;
+    setActiveIndex(newIndex);
   };
 
   const prevItem = () => {
-    setActiveIndex((prev) => (prev - 1 + items.length) % items.length);
+    const newIndex = (activeIndex - 1 + items.length) % items.length;
+    setActiveIndex(newIndex);
   };
 
   return (
     <div className={`w-full relative ${className}`}>
-      <div className="relative flex items-center">
-        <div className="overflow-hidden w-full">
-          <div
-            className="flex transition-transform duration-500"
-            style={{
-              transform: `translateX(-${activeIndex * cardWidth}%)`,
-            }}
-          >
-            {items.map((item, idx) => (
-              <div
-                key={idx}
-                style={{ width: `${cardWidth}%` }}
-                className="px-2 flex-shrink-0"
-              >
-                {renderItem(item, idx)}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-
       {showNavigation && (
-        <div className="flex items-center justify-between mt-4 px-2">
-          {/* Dots */}
-          <div className="flex gap-2">
-            {items.map((_, index) => (
-              <button
-                key={index}
-                className={`w-3 h-3 rounded-full ${index === activeIndex ? 'bg-primary' : 'bg-gray-300'} transition-colors`}
-                onClick={() => setActiveIndex(index)}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
+        <div className="flex items-center justify-end mb-4">
           {/* Arrows */}
           <div className="flex gap-3">
             <button
@@ -84,6 +62,42 @@ export default function SimpleCarousel({
                 <path d="M7 5l5 5-5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
             </button>
+          </div>
+        </div>
+      )}
+      <div className="relative flex items-center">
+        <div className="overflow-hidden w-full">
+          <div
+            className="flex transition-transform duration-500"
+            style={{
+              transform: `translateX(-${activeIndex * cardWidth}%)`,
+            }}
+          >
+            {items.map((item, idx) => (
+              <div
+                key={idx}
+                style={{ width: `${cardWidth}%` }}
+                className={`${itemClassName} flex-shrink-0`}
+              >
+                {renderItem(item, idx)}
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {showNavigation && (
+        <div className="flex items-center justify-center mt-4">
+          {/* Dots */}
+          <div className="flex gap-2">
+            {items.map((_, index) => (
+              <button
+                key={index}
+                className={`w-3 h-3 rounded-full ${index === activeIndex ? 'bg-primary' : 'bg-gray-300'} transition-colors`}
+                onClick={() => setActiveIndex(index)}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
           </div>
         </div>
       )}

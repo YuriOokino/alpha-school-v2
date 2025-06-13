@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from 'next/link';
 import LocationCard from './location-card';
+import ArticleCard from "@/components/features/article-card";
+import NewsCarouselSidebar from '@/components/features/news-carousel-sidebar';
 
 interface MegaMenuItem {
   title: string;
@@ -16,23 +18,6 @@ interface MegaMenuGroup {
 interface MegaMenuProps {
   groups: MegaMenuGroup[];
   sidebar?: React.ReactNode;
-}
-
-export function NewsCard() {
-  return (
-    <LocationCard
-      newsHeading={<h3 className="text-xl font-bold mb-4">In the News</h3>}
-      image="/assets/location-img-placeholder.webp"
-      title={<h6 className="font-bold text-[var(--color-warm-dark)] text-base mb-[var(--space-xs)]">This is a new headline</h6> as any}
-      address=""
-      city="Lorem ipsum dolor sit amet consectetur. Felis nibh vitae libero quis risus egestas arcu. Nec aliquet."
-      tuition=""
-      buttonText="Read more"
-      buttonHref="#"
-      buttonClassName="mt-4 bg-[var(--color-warm-dark)] text-[var(--color-warm)] rounded-full px-4 py-2 font-semibold hover:bg-[var(--color-warm-dark)]/90 hover:text-[var(--color-warm)] transition-colors"
-      className="flex-1 bg-[var(--color-warm)]"
-    />
-  );
 }
 
 export function MegaMenu({ groups, sidebar }: MegaMenuProps) {
@@ -70,7 +55,7 @@ export function MegaMenu({ groups, sidebar }: MegaMenuProps) {
           </div>
         ))}
         <div className="flex-1 flex flex-col h-full">
-          {sidebar ? sidebar : <NewsCard />}
+          {sidebar ? sidebar : <NewsCarouselSidebar />}
         </div>
       </div>
     </div>
