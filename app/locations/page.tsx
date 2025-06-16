@@ -1,10 +1,13 @@
-"use client"
-
 import WhatsNextSection from "@/components/sections/whats-next-section"
 import LocationCard from "@/components/features/location-card"
-import { locations } from "@/content/locations"
+import { getCurrentCampuses, getUpcomingCampuses } from "@/utils/campuses"
 
-export default function LocationsPage() {
+export default async function LocationsPage() {
+  const [currentCampuses, upcomingCampuses] = await Promise.all([
+    getCurrentCampuses(),
+    getUpcomingCampuses()
+  ])
+
   return (
     <main>
       <section className="alpha-section">
@@ -16,40 +19,38 @@ export default function LocationsPage() {
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-[var(--space-lg)] gap-[var(--space-md)]">
             <h3 className="section-headline font-bold">Current Campuses</h3>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[var(--space-md)]">
-            {locations.current.map((location, idx) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[var(--space-md)]">
+            {currentCampuses.map((campus) => (
               <LocationCard
-                key={idx}
-                image={location.image}
-                title={location.name}
-                address={location.address}
-                city={location.city}
-                tuition={location.tuition}
-                buttonText={location.buttonText}
-                buttonHref={location.buttonHref}
-                newsHeading={location.newsHeading}
+                key={campus.name}
+                image={campus.image}
+                title={campus.name}
+                address={campus.address}
+                tuition={campus.tuition}
+                buttonText={campus.buttonText}
+                buttonHref={campus.buttonHref}
+                newsHeading={campus.newsHeading}
                 className="scheme-lightblue"
               />
             ))}
           </div>
         </div>
 
-        <div className="w-full bg-[var(--color-bg-muted)] rounded-[var(--radius-lg)] p-[var(--space-xl)] relative mt-[var(--space-lg)]">
+        <div className="w-full bg-[var(--color-bg-muted)] rounded-[var(--radius-lg)] p-[var(--space-xl)] relative mt-[var(--space-md)]">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-[var(--space-lg)] gap-[var(--space-md)]">
             <h3 className="section-headline font-bold">Coming Soon</h3>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[var(--space-md)]">
-            {locations.upcoming.map((location, idx) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[var(--space-md)]">
+            {upcomingCampuses.map((campus) => (
               <LocationCard
-                key={`upcoming-${idx}`}
-                image={location.image}
-                title={location.name}
-                address={location.address}
-                city={location.city}
-                tuition={location.tuition}
-                buttonText={location.buttonText}
-                buttonHref={location.buttonHref}
-                newsHeading={location.newsHeading}
+                key={campus.name}
+                image={campus.image}
+                title={campus.name}
+                address={campus.address}
+                tuition={campus.tuition}
+                buttonText={campus.buttonText}
+                buttonHref={campus.buttonHref}
+                newsHeading={campus.newsHeading}
               />
             ))}
           </div>

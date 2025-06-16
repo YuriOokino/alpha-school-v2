@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import FeatureCard from "@/components/features/feature-card"
 import EventCard from "@/components/features/event-card"
 import { events } from "@/content/events"
-import media from "@/content/campuses/austin/media.json";
 
 export default async function AustinPage() {
   return (
@@ -19,8 +18,8 @@ export default async function AustinPage() {
         <FeatureCard
           className="scheme-lightblue"
           media={{
-            video: media.video.includes("?") ? `${media.video}&autoplay=1` : `${media.video}?autoplay=1`,
-            poster: media.videoPoster
+            video: "https://player.vimeo.com/video/941700697?color&autopause=0&loop=0&muted=0&title=1&portrait=1&byline=1#t=",
+            poster: "/assets/feature-video-overlays/austin-video-preview.webp"
           }}
         >
           <h2 className="heading-style-h2 mb-4">Welcome to the Future of Education</h2>

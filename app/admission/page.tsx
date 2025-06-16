@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import MainHeading from "@/components/layout/main-heading";
 import WhatsNextSection from "@/components/sections/whats-next-section";
@@ -16,6 +16,8 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
+import { getAllCampuses } from "@/utils/campuses";
+import type { CampusMetadata } from "@/utils/campuses";
 
 // Auto-play carousel component based on SimpleCarousel
 function AutoPlayCarousel({
@@ -52,62 +54,46 @@ function AutoPlayCarousel({
   };
 
   return (
-    <div className={`w-full relative ${className}`}>
-      <div className="relative flex items-center">
-        <div className="overflow-hidden w-full">
-          <div
-            className="flex transition-transform duration-500"
-            style={{
-              transform: `translateX(-${activeIndex * cardWidth}%)`,
-            }}
-          >
-            {items.map((item, idx) => (
-              <div
-                key={idx}
-                style={{ width: `${cardWidth}%` }}
-                className="px-2 flex-shrink-0"
-              >
-                {renderItem(item, idx)}
-              </div>
-            ))}
-          </div>
+    <div className={`relative ${className}`}>
+      <div className="overflow-hidden">
+        <div
+          className="flex transition-transform duration-500"
+          style={{
+            width: `${items.length * cardWidth}%`,
+            transform: `translateX(-${activeIndex * cardWidth}%)`,
+          }}
+        >
+          {items.map((item, index) => (
+            <div
+              key={index}
+              style={{ width: `${cardWidth}%` }}
+              className="px-2"
+            >
+              {renderItem(item, index)}
+            </div>
+          ))}
         </div>
       </div>
-
-      {showNavigation && (
-        <div className="flex items-center justify-between mt-4 px-2">
-          {/* Dots */}
-          <div className="flex gap-2">
-            {items.map((_, index) => (
-              <button
-                key={index}
-                className={`w-3 h-3 rounded-full ${index === activeIndex ? 'bg-primary' : 'bg-gray-300'} transition-colors`}
-                onClick={() => setActiveIndex(index)}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
-          {/* Arrows */}
-          <div className="flex gap-3">
-            <button
-              onClick={prevItem}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--color-bg-muted)] hover:bg-[var(--color-bg-muted-hover)]"
-              aria-label="Previous"
-            >
-              <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
-                <path d="M13 15l-5-5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-            <button
-              onClick={nextItem}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--color-bg-muted)] hover:bg-[var(--color-bg-muted-hover)]"
-              aria-label="Next"
-            >
-              <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
-                <path d="M7 5l5 5-5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-          </div>
+      {showNavigation && items.length > visibleCards && (
+        <div className="flex justify-between mt-4">
+          <Button
+            variant="outline"
+            onClick={prevItem}
+            className="rounded-full p-2"
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M12 15L7 10L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </Button>
+          <Button
+            variant="outline"
+            onClick={nextItem}
+            className="rounded-full p-2"
+          >
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+              <path d="M8 5L13 10L8 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+          </Button>
         </div>
       )}
     </div>
@@ -212,63 +198,15 @@ const enrollmentSteps = [
 
 export default function AdmissionPage() {
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
+  const [campuses, setCampuses] = useState<CampusMetadata[]>([]);
 
-  const campusLocations = [
-    {
-      image: "/assets/location-img-placeholder.webp",
-      title: "Alpha School Palm Beach (K-8)",
-      address: "Location announced soon!",
-      city: "Fall 2025 applications open.",
-      tuition: "$40,000",
-      buttonText: "Apply Now!",
-      buttonHref: "#"
-    },
-    {
-      image: "/assets/location-img-placeholder.webp", 
-      title: "Alpha School Orlando (K-8)",
-      address: "Location announced soon!",
-      city: "Fall 2025 applications open.",
-      tuition: "$40,000",
-      buttonText: "Apply Now!",
-      buttonHref: "#"
-    },
-    {
-      image: "/assets/location-img-placeholder.webp",
-      title: "Alpha School Scottsdale (K-8)", 
-      address: "14000 N Hayden Rd, Scottsdale, AZ 85260.",
-      city: "Fall 2025 applications open.",
-      tuition: "$40,000",
-      buttonText: "Apply Now!",
-      buttonHref: "#"
-    },
-    {
-      image: "/assets/location-img-placeholder.webp",
-      title: "Alpha School Austin (K-8)",
-      address: "8000 SW 56th St, Austin, TX 78735",
-      city: "Currently enrolling for Fall 2025.",
-      tuition: "$40,000",
-      buttonText: "Apply Now!",
-      buttonHref: "#"
-    },
-    {
-      image: "/assets/location-img-placeholder.webp",
-      title: "Alpha School Miami (K-8)",
-      address: "8000 SW 56th St, Miami, FL 33155",
-      city: "Currently enrolling for Fall 2025.",
-      tuition: "$40,000", 
-      buttonText: "Apply Now!",
-      buttonHref: "#"
-    },
-    {
-      image: "/assets/location-img-placeholder.webp",
-      title: "Alpha School Brownsville (K-8)",
-      address: "1991 E Price Rd, Brownsville, TX 78521",
-      city: "Currently enrolling for Fall 2025.",
-      tuition: "$25,000",
-      buttonText: "Apply Now!",
-      buttonHref: "#"
-    }
-  ];
+  useEffect(() => {
+    const loadCampuses = async () => {
+      const allCampuses = await getAllCampuses();
+      setCampuses(allCampuses);
+    };
+    loadCampuses();
+  }, []);
 
   const toggleSection = (section: string) => {
     setExpandedSection(expandedSection === section ? null : section);
@@ -480,17 +418,17 @@ export default function AdmissionPage() {
         />
         
         <AutoPlayCarousel
-          items={campusLocations}
-          renderItem={(location, index) => (
+          items={campuses}
+          renderItem={(campus) => (
             <LocationCard
-              key={index}
-              image={location.image}
-              title={location.title}
-              address={location.address}
-              city={location.city}
-              tuition={location.tuition}
-              buttonText={location.buttonText}
-              buttonHref={location.buttonHref}
+              key={campus.name}
+              image={campus.image}
+              title={campus.name}
+              address={campus.address}
+              tuition={campus.tuition}
+              buttonText={campus.buttonText}
+              buttonHref={campus.buttonHref}
+              newsHeading={campus.newsHeading}
               className="h-full"
             />
           )}

@@ -15,7 +15,7 @@ export default function KidsNeedSection() {
             />
           </div>
         }
-        className="bg-[#B9EDFF]"
+        className="scheme-lightblue"
       >
         <h2 className="section-headline text-[#111827] mb-[var(--space-lg)]">Your kids need two things to learn</h2>
         <div className="mb-[var(--space-md)]">

@@ -1,5 +1,6 @@
-import fs from 'fs';
-import path from 'path';
+// Remove fs and path imports
+// import fs from 'fs';
+// import path from 'path';
 import MainHeading from "@/components/layout/main-heading"
 import WhatsNextSection from "@/components/sections/whats-next-section"
 import { Button } from "@/components/ui/button"
@@ -7,7 +8,6 @@ import FeatureCard from "@/components/features/feature-card"
 import Gallery from "@/components/features/gallery"
 import EventCard from "@/components/features/event-card"
 import { events } from "@/content/events"
-import media from "@/content/campuses/brownsville/media.json";
 
 // Placeholder imports for images and cards
 // import Image from "next/image"
@@ -15,17 +15,17 @@ import media from "@/content/campuses/brownsville/media.json";
 
 export default async function BrownsvillePage() {
   // This runs on the server!
-  const galleryDir = path.join(process.cwd(), 'public/assets/brownsville');
-  let galleryImages: { src: string; alt: string }[] = [];
-  try {
-    const files = fs.readdirSync(galleryDir);
-    galleryImages = files
-      .filter(file => /\.(webp|jpg|jpeg|png|gif)$/i.test(file))
-      .map(file => ({ src: `/assets/brownsville/${file}`, alt: 'Brownsville campus photo' }));
-  } catch (e) {
-    // Directory may not exist yet
-    galleryImages = [];
-  }
+  // const galleryDir = path.join(process.cwd(), 'public/assets/brownsville');
+  // let galleryImages: { src: string; alt: string }[] = [];
+  // try {
+  //   const files = fs.readdirSync(galleryDir);
+  //   galleryImages = files
+  //     .filter(file => /\.(webp|jpg|jpeg|png|gif)$/i.test(file))
+  //     .map(file => ({ src: `/assets/brownsville/${file}`, alt: 'Brownsville campus photo' }));
+  // } catch (e) {
+  //   // Directory may not exist yet
+  //   galleryImages = [];
+  // }
 
   return (
     <main>
@@ -39,7 +39,7 @@ export default async function BrownsvillePage() {
         <FeatureCard
           className="scheme-lightblue"
           media={{
-            video: media.video.includes("?") ? `${media.video}&autoplay=1` : `${media.video}?autoplay=1`,
+            video: "https://youtu.be/Da9pAmD2CxQ?si=I0JryXdWXMzUhpF0",
             poster: "/assets/feature-video-overlays/brownsville-video-preview.webp"
           }}
         >
@@ -58,7 +58,7 @@ export default async function BrownsvillePage() {
 
       {/* Photo Gallery Section */}
       <section className="alpha-section">
-        <Gallery images={galleryImages} />
+        <Gallery images={[]} />
       </section>
 
       {/* Starseeds Section */}

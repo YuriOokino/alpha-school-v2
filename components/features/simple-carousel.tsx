@@ -40,31 +40,6 @@ export default function SimpleCarousel({
 
   return (
     <div className={`w-full relative ${className}`}>
-      {showNavigation && (
-        <div className="flex items-center justify-end mb-4">
-          {/* Arrows */}
-          <div className="flex gap-3">
-            <button
-              onClick={prevItem}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--color-bg-muted)] hover:bg-[var(--color-bg-muted-hover)]"
-              aria-label="Previous"
-            >
-              <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
-                <path d="M13 15l-5-5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-            <button
-              onClick={nextItem}
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--color-bg-muted)] hover:bg-[var(--color-bg-muted-hover)]"
-              aria-label="Next"
-            >
-              <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
-                <path d="M7 5l5 5-5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </button>
-          </div>
-        </div>
-      )}
       <div className="relative flex items-center">
         <div className="overflow-hidden w-full">
           <div
@@ -87,7 +62,7 @@ export default function SimpleCarousel({
       </div>
 
       {showNavigation && (
-        <div className="flex items-center justify-center mt-4">
+        <div className="flex items-center justify-between mt-4">
           {/* Dots */}
           <div className="flex gap-2">
             {items.map((_, index) => (
@@ -98,6 +73,27 @@ export default function SimpleCarousel({
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
+          </div>
+          {/* Arrows */}
+          <div className="flex gap-3">
+            <button
+              onClick={prevItem}
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--color-bg-muted)] hover:bg-[var(--color-bg-muted-hover)]"
+              aria-label="Previous"
+            >
+              <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
+                <path d="M13 15l-5-5 5-5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
+            <button
+              onClick={nextItem}
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-[var(--color-bg-muted)] hover:bg-[var(--color-bg-muted-hover)]"
+              aria-label="Next"
+            >
+              <svg width="20" height="20" fill="none" viewBox="0 0 20 20">
+                <path d="M7 5l5 5-5 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+            </button>
           </div>
         </div>
       )}

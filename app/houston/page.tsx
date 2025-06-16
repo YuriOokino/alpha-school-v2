@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button"
 import FeatureCard from "@/components/features/feature-card"
 import EventCard from "@/components/features/event-card"
 import { events } from "@/content/events"
-import media from "@/content/campuses/houston/media.json";
 
 export default async function HoustonPage() {
   return (
@@ -20,7 +19,7 @@ export default async function HoustonPage() {
           className="scheme-lightblue"
           media={
             <img 
-              src={media.image} 
+              src="/assets/feature-video-overlays/houston-video-preview.webp" 
               alt="Alpha School Houston Campus" 
               className="w-full h-full object-cover rounded-[var(--radius-md)]"
             />

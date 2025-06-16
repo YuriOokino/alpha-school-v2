@@ -2,7 +2,6 @@
 
 import React, { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { locations } from "@/content/new-locations"
 import Link from "next/link"
 import SectionHeading from "@/components/features/section-heading"
 

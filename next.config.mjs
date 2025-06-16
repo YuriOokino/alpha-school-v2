@@ -9,12 +9,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  experimental: {
-    serverActions: true,
-  },
-  api: {
-    bodyParser: true,
-  },
+  serverActions: true,
   logging: {
     fetches: {
       fullUrl: true,
