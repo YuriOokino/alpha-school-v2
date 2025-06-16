@@ -58,7 +58,22 @@ export default async function BrownsvillePage() {
 
       {/* Photo Gallery Section */}
       <section className="alpha-section">
-        <Gallery images={[]} />
+        <Gallery 
+          images={[
+            { src: "/assets/brownsville/brownsville-1.webp", alt: "Brownsville campus photo" },
+            { src: "/assets/brownsville/brownsville-2.webp", alt: "Brownsville campus photo" },
+            { src: "/assets/brownsville/brownsville-3.webp", alt: "Brownsville campus photo" },
+            { src: "/assets/brownsville/brownsville-4.webp", alt: "Brownsville campus photo" },
+            { src: "/assets/brownsville/brownsville-5.webp", alt: "Brownsville campus photo" },
+            { src: "/assets/brownsville/brownsville-6.webp", alt: "Brownsville campus photo" },
+            { src: "/assets/brownsville/brownsville-7.webp", alt: "Brownsville campus photo" },
+            { src: "/assets/brownsville/brownsville-8.webp", alt: "Brownsville campus photo" },
+            { src: "/assets/brownsville/brownsville-9.webp", alt: "Brownsville campus photo" },
+            { src: "/assets/brownsville/brownsville-10.webp", alt: "Brownsville campus photo" },
+            { src: "/assets/brownsville/brownsville-11.webp", alt: "Brownsville campus photo" },
+            { src: "/assets/brownsville/brownsville-12.webp", alt: "Brownsville campus photo" }
+          ]} 
+        />
       </section>
 
       {/* Starseeds Section */}
