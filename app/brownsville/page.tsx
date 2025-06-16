@@ -97,7 +97,7 @@ export default async function BrownsvillePage() {
             <p className="body-text mb-2">
               <strong>Email:</strong> admissions.brownsville@alpha.school
             </p>
-            <Button variant="default" href="/application">
+            <Button variant="default" className="mt-[var(--space-md)]" href="/application">
               Apply Today!
             </Button>
           </div>
@@ -120,7 +120,7 @@ export default async function BrownsvillePage() {
                     </svg>
                 </span>
               </Button>
-              <Button variant="outline" className="w-full flex justify-between items-center">
+              <Button variant="outline" className="w-full flex justify-between items-center" href="/downloads/Alpha School - Tuition Overview.pdf" target="_blank">
                 Tuition Overview
                 <span className="ml-2 flex-shrink-0" aria-hidden="true">
                   <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -129,16 +129,7 @@ export default async function BrownsvillePage() {
                   </svg>
                 </span>
               </Button>
-              <Button variant="outline"className="w-full flex justify-between items-center">
-                View Brochure
-                <span className="ml-2 flex-shrink-0" aria-hidden="true">
-                  <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M8 9L11 5.25H8.75V0H7.25V5.25H5L8 9Z" fill="currentColor"/>
-                    <path d="M14 10.5H2V5.25H0.5V10.5C0.5 11.3273 1.17275 12 2 12H14C14.8273 12 15.5 11.3273 15.5 10.5V5.25H14V10.5Z" fill="currentColor"/>
-                  </svg>
-                </span>
-              </Button>
-              <Button variant="outline" className="w-full flex justify-between items-center">
+              <Button variant="outline" className="w-full flex justify-between items-center" href="/downloads/Alpha School - Sample School Schedule.pdf" target="_blank">
                 School Schedule
                 <span className="ml-2 flex-shrink-0" aria-hidden="true">
                   <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -147,7 +138,7 @@ export default async function BrownsvillePage() {
                   </svg>
                 </span>
               </Button>
-              <Button variant="outline" className="w-full flex justify-between items-center">
+              <Button variant="outline" className="w-full flex justify-between items-center" href="/downloads/Alpha School 25-26 Calendar.pdf" target="_blank">
                 24/25 Calendar
                 <span className="ml-2 flex-shrink-0" aria-hidden="true">
                   <svg width="16" height="12" viewBox="0 0 16 12" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -166,7 +157,7 @@ export default async function BrownsvillePage() {
       {/* Events & Programs Section */}
       <section className="alpha-section">
         <h2 className="heading-style-h2 text-center mb-4">EVENTS & PROGRAMS</h2>
-        <p className="body-text text-center mb-8">
+        <p className="body-text text-center mb-8 max-w-2xl mx-auto">
           Explore our showcases to tour the campus, and enjoy our camps and afterschool programs offering exciting, hands-on experiences for kids.
         </p>
         <div className="flex flex-col md:flex-row flex-wrap gap-[var(--space-xl)] justify-center">
@@ -176,7 +167,28 @@ export default async function BrownsvillePage() {
             </div>
           ))}
         </div>
+        <div className="text-center no-events-container" style={{ display: 'none' }}>
+          <Button variant="outline" href="/events">
+            View events
+          </Button>
+        </div>
       </section>
+
+      <script dangerouslySetInnerHTML={{
+        __html: `
+          document.addEventListener('DOMContentLoaded', function() {
+            const events = ${JSON.stringify(events)};
+            const brownsvilleEvents = events.filter(e => e.location.toLowerCase().includes("brownsville"));
+            const noEventsContainer = document.querySelector('.no-events-container');
+            const eventsContainer = document.querySelector('.flex.flex-col');
+            
+            if (brownsvilleEvents.length === 0) {
+              noEventsContainer.style.display = 'block';
+              eventsContainer.style.display = 'none';
+            }
+          });
+        `
+      }} />
 
       {/* WhatsNextSection */}
       <WhatsNextSection />

@@ -1,4 +1,5 @@
 import { Card } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
 import Image from "next/image"
 
 interface LocationCardProps {
@@ -40,7 +41,7 @@ export default function LocationCard({ image, title, address, city, tuition, but
           <div className="text-[var(--color-warm-dark)] text-sm mb-[var(--space-sm)]"><span className="font-bold">Tuition: {tuition}</span> <InfoIcon /></div>
         )}
       </div>
-      <a href={buttonHref} className={`w-full text-center mt-auto bg-[var(--color-warm-dark)] !text-[#FFD1D1] rounded-full px-4 py-2 font-semibold hover:bg-[#7a3535] transition-colors ${buttonClassName}`}>{buttonText}</a>
+      <Button href={buttonHref} variant="maroon" className={`w-full mt-auto ${buttonClassName}`}>{buttonText}</Button>
     </Card>
   )
 } 
