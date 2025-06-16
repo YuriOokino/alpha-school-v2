@@ -18,9 +18,10 @@ interface MegaMenuGroup {
 interface MegaMenuProps {
   groups: MegaMenuGroup[];
   sidebar?: React.ReactNode;
+  onLinkClick?: () => void;
 }
 
-export function MegaMenu({ groups, sidebar }: MegaMenuProps) {
+export function MegaMenu({ groups, sidebar, onLinkClick }: MegaMenuProps) {
   // Always display 3 group columns, pad with empty groups if needed
   const groupColumns = [
     ...groups.slice(0, 3),
@@ -41,7 +42,7 @@ export function MegaMenu({ groups, sidebar }: MegaMenuProps) {
             <ul className="space-y-4">
               {group.items.map((item: MegaMenuItem) => (
                 <li key={item.title}>
-                  <Link href={item.href} className="flex flex-col group transition-colors">
+                  <Link href={item.href} className="flex flex-col group transition-colors" onClick={onLinkClick}>
                     <span className="font-medium flex items-center">
                       {item.title}
                     </span>
@@ -55,7 +56,7 @@ export function MegaMenu({ groups, sidebar }: MegaMenuProps) {
           </div>
         ))}
         <div className="flex-1 flex flex-col h-full">
-          {sidebar ? sidebar : <NewsCarouselSidebar />}
+          {sidebar ? sidebar : <NewsCarouselSidebar articles={[]} />}
         </div>
       </div>
     </div>

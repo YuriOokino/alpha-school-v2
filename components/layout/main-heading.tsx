@@ -38,7 +38,7 @@ export default function MainHeading({
 
   return (
     <div className={`${hasBackground ? 'w-full' : ''} ${variantClasses} ${hasBackground ? 'rounded-b-[var(--radius-lg)]' : ''}`}>
-      <div className="pt-[var(--space-3xl)] pb-[var(--space-3xl)] mb-[var(--space-lg)] alpha-container">
+      <div className="alpha-container pb-[var(--space-lg)]">
         <h1
           className={`hero-headline text-center max-w-[60vw] mx-auto mb-6 ${className}`.trim()}
           tabIndex={-1}

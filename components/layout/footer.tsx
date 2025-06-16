@@ -60,7 +60,7 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#">
+                <Link href="/bring-alpha-to-your-city">
                   Alpha Micro Schools
                 </Link>
               </li>
@@ -77,12 +77,12 @@ export default function Footer() {
             <h3 className="text-base font-medium mb-2 pb-0">Insights</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="hover:text-blue-800">
+                <Link href="/blog" className="hover:text-blue-800">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-blue-800">
+                <Link href="/news" className="hover:text-blue-800">
                   In the News
                 </Link>
               </li>
@@ -109,17 +109,17 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-blue-800">
+                <Link href="https://sportsacademy.school/" className="hover:text-blue-800">
                   Texas Sports Academy
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-blue-800">
+                <Link href="http://nextgenacademy.school/" className="hover:text-blue-800">
                   NextGen Academy
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-blue-800">
+                <Link href="http://valenta.school" className="hover:text-blue-800">
                   Valenta Academy
                 </Link>
               </li>
@@ -132,7 +132,7 @@ export default function Footer() {
      
         <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
           <div>
-            <Link href="#" className="text-sm hover:text-blue-200">
+            <Link href="/privacy-policy" className="text-sm hover:text-blue-200">
               Privacy Policy
             </Link>
           </div>

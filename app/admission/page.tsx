@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-
 import MainHeading from "@/components/layout/main-heading";
 import WhatsNextSection from "@/components/sections/whats-next-section";
 import FeatureCard from "@/components/features/feature-card";
@@ -11,6 +10,12 @@ import LocationCard from "@/components/features/location-card";
 import SectionHeading from "@/components/features/section-heading";
 import Link from "next/link";
 import React from "react";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
 
 // Auto-play carousel component based on SimpleCarousel
 function AutoPlayCarousel({
@@ -109,6 +114,102 @@ function AutoPlayCarousel({
   );
 }
 
+const admissionsSteps = [
+  {
+    key: 'attend-showcase',
+    title: '1. Attend a Showcase or Schedule a Tour',
+    content: (
+      <>
+        <div className="text-sm text-gray-600">
+          Discover our unique learning approach and explore the environment that sets Alpha apart.
+        </div>
+        <div className="flex gap-3 mt-4">
+          <Button variant="default">Schedule Tour</Button>
+          <Button variant="default" href="/events">View Showcase</Button>
+        </div>
+      </>
+    )
+  },
+  {
+    key: 'submit-application',
+    title: '2. Submit Application Form',
+    content: (
+      <>
+        <div className="text-sm text-gray-600">
+          Complete our comprehensive application form with student information, academic history, and family details.
+        </div>
+        <div className="flex gap-3 mt-4">
+          <Button variant="default">Start Application</Button>
+          <Button variant="default">Download Form</Button>
+        </div>
+      </>
+    )
+  },
+  {
+    key: 'shadow-day',
+    title: '3. Shadow Day',
+    content: (
+      <>
+        <div className="text-sm text-gray-600">
+          Your child will spend a day with our students to experience our unique learning approach and see if Alpha School is the right fit.
+        </div>
+        <div className="flex gap-3 mt-4">
+          <Button variant="default">Book Shadow Day</Button>
+          <Button variant="default">Learn More</Button>
+        </div>
+      </>
+    )
+  },
+];
+
+const enrollmentSteps = [
+  {
+    key: 'meet-coordinator',
+    title: '1. Meet with Your Admissions Coordinator',
+    content: (
+      <>
+        <div className="text-sm text-gray-600">
+          Schedule a personal meeting with your dedicated admissions coordinator to discuss your family's needs and expectations.
+        </div>
+        <div className="flex gap-3 mt-4">
+          <Button variant="default">Schedule Meeting</Button>
+          <Button variant="default">Contact Team</Button>
+        </div>
+      </>
+    )
+  },
+  {
+    key: 'finalize-enrollment',
+    title: '2. Finalize Enrollment',
+    content: (
+      <>
+        <div className="text-sm text-gray-600">
+          Complete enrollment paperwork, submit required documents, and secure your child's spot at Alpha School.
+        </div>
+        <div className="flex gap-3 mt-4">
+          <Button variant="default">Complete Enrollment</Button>
+          <Button variant="default">Upload Documents</Button>
+        </div>
+      </>
+    )
+  },
+  {
+    key: 'welcome-family',
+    title: '3. Welcome to the Alpha Family',
+    content: (
+      <>
+        <div className="text-sm text-gray-600">
+          Join our community! Receive orientation materials, meet your child's guides, and prepare for the start of an amazing educational journey.
+        </div>
+        <div className="flex gap-3 mt-4">
+          <Button variant="default">Get Orientation</Button>
+          <Button variant="default">Meet Guides</Button>
+        </div>
+      </>
+    )
+  },
+];
+
 export default function AdmissionPage() {
   const [expandedSection, setExpandedSection] = useState<string | null>(null);
 
@@ -192,65 +293,14 @@ export default function AdmissionPage() {
       <p className="text-lg mb-8 text-gray-600">
         Here's a step-by-step guide to making your application process smooth and simple.
       </p>
-      
-      <div className="space-y-4">
-        <div className="bg-[var(--color-bg-muted)] rounded-2xl overflow-hidden">
-          <button
-            onClick={() => toggleSection('attend-showcase')}
-            className="w-full flex items-center justify-between p-4 text-left transition-colors"
-          >
-            <span className="font-medium">1. Attend a Showcase or Schedule a Tour</span>
-            <DropdownArrow isExpanded={expandedSection === 'attend-showcase'} />
-          </button>
-          {expandedSection === 'attend-showcase' && (
-            <div className="px-4 pb-4 text-sm text-gray-600">
-              Discover our unique learning approach and explore the environment that sets Alpha apart.
-              <div className="flex gap-3 mt-4">
-                <Button variant="default">Schedule Tour</Button>
-                <Button variant="default" href="/events">View Showcase</Button>
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div className="bg-[var(--color-bg-muted)] rounded-2xl overflow-hidden">
-          <button
-            onClick={() => toggleSection('submit-application')}
-            className="w-full flex items-center justify-between p-4 text-left transition-colors"
-          >
-            <span className="font-medium">2. Submit Application Form</span>
-            <DropdownArrow isExpanded={expandedSection === 'submit-application'} />
-          </button>
-          {expandedSection === 'submit-application' && (
-            <div className="px-4 pb-4 text-sm text-gray-600">
-              Complete our comprehensive application form with student information, academic history, and family details.
-              <div className="flex gap-3 mt-4">
-                <Button variant="default">Start Application</Button>
-                <Button variant="default">Download Form</Button>
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div className="bg-[var(--color-bg-muted)] rounded-2xl overflow-hidden">
-          <button
-            onClick={() => toggleSection('shadow-day')}
-            className="w-full flex items-center justify-between p-4 text-left transition-colors"
-          >
-            <span className="font-medium">3. Shadow Day</span>
-            <DropdownArrow isExpanded={expandedSection === 'shadow-day'} />
-          </button>
-          {expandedSection === 'shadow-day' && (
-            <div className="px-4 pb-4 text-sm text-gray-600">
-              Your child will spend a day with our students to experience our unique learning approach and see if Alpha School is the right fit.
-              <div className="flex gap-3 mt-4">
-                <Button variant="default">Book Shadow Day</Button>
-                <Button variant="default">Learn More</Button>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
+      <Accordion type="single" collapsible className="space-y-4">
+        {admissionsSteps.map((step) => (
+          <AccordionItem value={step.key} key={step.key}>
+            <AccordionTrigger>{step.title}</AccordionTrigger>
+            <AccordionContent>{step.content}</AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
     </div>
   );
 
@@ -260,65 +310,14 @@ export default function AdmissionPage() {
       <p className="text-lg mb-8 text-gray-600">
         Next step – finalizing your enrollment and preparing for an incredible educational journey with Alpha.
       </p>
-      
-      <div className="space-y-4">
-        <div className="bg-[var(--color-bg-muted)] rounded-2xl overflow-hidden">
-          <button
-            onClick={() => toggleSection('meet-coordinator')}
-            className="w-full flex items-center justify-between p-4 text-left transition-colors"
-          >
-            <span className="font-medium">1. Meet with Your Admissions Coordinator</span>
-            <DropdownArrow isExpanded={expandedSection === 'meet-coordinator'} />
-          </button>
-          {expandedSection === 'meet-coordinator' && (
-            <div className="px-4 pb-4 text-sm text-gray-600">
-              Schedule a personal meeting with your dedicated admissions coordinator to discuss your family's needs and expectations.
-              <div className="flex gap-3 mt-4">
-                <Button variant="default">Schedule Meeting</Button>
-                <Button variant="default">Contact Team</Button>
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div className="bg-[var(--color-bg-muted)] rounded-2xl overflow-hidden">
-          <button
-            onClick={() => toggleSection('finalize-enrollment')}
-            className="w-full flex items-center justify-between p-4 text-left transition-colors"
-          >
-            <span className="font-medium">2. Finalize Enrollment</span>
-            <DropdownArrow isExpanded={expandedSection === 'finalize-enrollment'} />
-          </button>
-          {expandedSection === 'finalize-enrollment' && (
-            <div className="px-4 pb-4 text-sm text-gray-600">
-              Complete enrollment paperwork, submit required documents, and secure your child's spot at Alpha School.
-              <div className="flex gap-3 mt-4">
-                <Button variant="default">Complete Enrollment</Button>
-                <Button variant="default">Upload Documents</Button>
-              </div>
-            </div>
-          )}
-        </div>
-
-        <div className="bg-[var(--color-bg-muted)] rounded-2xl overflow-hidden">
-          <button
-            onClick={() => toggleSection('welcome-family')}
-            className="w-full flex items-center justify-between p-4 text-left transition-colors"
-          >
-            <span className="font-medium">3. Welcome to the Alpha Family</span>
-            <DropdownArrow isExpanded={expandedSection === 'welcome-family'} />
-          </button>
-          {expandedSection === 'welcome-family' && (
-            <div className="px-4 pb-4 text-sm text-gray-600">
-              Join our community! Receive orientation materials, meet your child's guides, and prepare for the start of an amazing educational journey.
-              <div className="flex gap-3 mt-4">
-                <Button variant="default">Get Orientation</Button>
-                <Button variant="default">Meet Guides</Button>
-              </div>
-            </div>
-          )}
-        </div>
-      </div>
+      <Accordion type="single" collapsible className="space-y-4">
+        {enrollmentSteps.map((step) => (
+          <AccordionItem value={step.key} key={step.key}>
+            <AccordionTrigger>{step.title}</AccordionTrigger>
+            <AccordionContent>{step.content}</AccordionContent>
+          </AccordionItem>
+        ))}
+      </Accordion>
     </div>
   );
 
@@ -335,7 +334,7 @@ export default function AdmissionPage() {
   return (
     <div>
       <MainHeading
-        variant="maroon"
+        variant="primary"
         description="Ready to get started? Here's everything you need to know about applying to Alpha School."
       >
         Applications are open!

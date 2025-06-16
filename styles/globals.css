@@ -114,7 +114,7 @@
   }
   
   .alpha-container {
-    @apply max-w-[1280px] mx-auto px-6 md:px-[var(--space-md)];
+    @apply max-w-[1280px] mx-auto px-6 md:px-[var(--space-md)] pt-[var(--space-xl)];
   }
 }
 
@@ -167,7 +167,7 @@
   
   /* Buttons */
   .alpha-btn-primary {
-    @apply bg-[var(--color-primary)] text-white hover:bg-[#0000CC] rounded-[var(--radius-pill)] px-[var(--space-lg)] py-[var(--space-sm)] font-semibold transition-colors;
+    @apply bg-black text-white hover:bg-[var(--bg-neutral-800)] rounded-[var(--radius-pill)] px-[var(--space-lg)] py-[var(--space-sm)] font-semibold transition-colors;
   }
   
   .alpha-btn-outline {
@@ -307,4 +307,27 @@
 
 .alpha-card.sidebar-variant {
   padding: 0 !important;
+}
+
+.alpha-accordion {
+  background: var(--color-bg-muted);
+  border-radius: 1rem; /* 2xl */
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  text-align: left;
+  font-weight: 500;
+  cursor: pointer;
+  font-size: 1rem;
+  border: none;
+}
+
+.alpha-accordion .chevron {
+  transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.alpha-accordion[data-state="open"] .chevron {
+  transform: rotate(180deg);
 }

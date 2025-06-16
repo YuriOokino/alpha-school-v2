@@ -1,126 +1,91 @@
-"use client"
+"use client";
 
 import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import MainHeading from "@/components/layout/main-heading";
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import Link from "next/link";
-import { getArticleBySlug, getAllNewsArticles } from "@/utils/content-loader.client";
-import type { NewsArticle } from "@/utils/content-loader.client";
-import NewsListSidebar from '@/components/features/news-list-sidebar';
+import { useState as useReactState } from "react";
 import ArticlePagination from "@/components/ui/ArticlePagination";
 import WhatsNextSection from "@/components/sections/whats-next-section";
 
-export default function NewsArticlePage() {
+export default function BlogPostPage() {
   const params = useParams();
   const slug = params?.slug as string;
-  const [article, setArticle] = useState<NewsArticle | null>(null);
-  const [allArticles, setAllArticles] = useState<NewsArticle[]>([]);
-  const [otherArticles, setOtherArticles] = useState<NewsArticle[]>([]);
+  const [post, setPost] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [allPosts, setAllPosts] = useState<any[]>([]);
+  const [sidebarPosts, setSidebarPosts] = useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
 
   useEffect(() => {
     if (!slug) return;
-
-    const loadArticle = async () => {
+    const fetchPost = async () => {
       try {
         setLoading(true);
-        const fetchedArticle = await getArticleBySlug(slug, 'news');
-        
-        // Type guard to ensure we have a NewsArticle
-        if (!fetchedArticle || fetchedArticle.type !== 'news') {
-          setError('Article not found');
-          return;
-        }
-        
-        setArticle(fetchedArticle as NewsArticle);
-        
-        const allArticlesData = await getAllNewsArticles();
-        setAllArticles(allArticlesData);
-        setOtherArticles(allArticlesData.filter(a => a.id !== fetchedArticle.id));
-        
-        // Find the current article's index
-        const currentArticleIndex = allArticlesData.findIndex(a => a.id === fetchedArticle.id);
-        setCurrentIndex(currentArticleIndex);
-        
+        const res = await fetch(`/api/blog/${slug}`);
+        if (!res.ok) throw new Error("Blog post not found");
+        const data = await res.json();
+        setPost(data);
         setError(null);
+        // Fetch all blog posts
+        const allRes = await fetch('/api/blog');
+        if (allRes.ok) {
+          const allPostsData = await allRes.json();
+          setAllPosts(allPostsData);
+          // Find the current post's index in allPosts
+          const idx = allPostsData.findIndex((p: any) => p.slug === slug);
+          setCurrentIndex(idx);
+          // For sidebar, filter out the current post
+          setSidebarPosts(allPostsData.filter((p: any) => p.slug !== slug));
+        }
       } catch (err) {
-        console.error('Error loading article:', err);
-        setError(err instanceof Error ? err.message : 'An error occurred');
+        setError(err instanceof Error ? err.message : "An error occurred");
       } finally {
         setLoading(false);
       }
     };
-    loadArticle();
+    fetchPost();
   }, [slug]);
 
-  // Navigation functions
-  const goToNextArticle = () => {
-    if (currentIndex < otherArticles.length - 1) {
-      const nextArticle = otherArticles[currentIndex + 1];
-      window.location.href = `/news/${nextArticle.id}`;
-    }
-  };
-
-  const goToPreviousArticle = () => {
-    if (currentIndex > 0) {
-      const prevArticle = otherArticles[currentIndex - 1];
-      window.location.href = `/news/${prevArticle.id}`;
-    }
-  };
-
-  // Helper to render content as paragraphs
-  const renderContent = (content: string) => {
-    return content.split('\n\n').map((para: string, idx: number) => (
-      <p key={idx} className="body-text mb-4">{para}</p>
-    ));
-  };
-
-  if (loading) {
-    return <div className="alpha-section">Loading article...</div>;
-  }
-
-  if (error || !article) {
-    return <div className="alpha-section text-red-500">{error || 'Article not found'}</div>;
-  }
+  if (loading) return <div className="alpha-section">Loading article...</div>;
+  if (error || !post) return <div className="alpha-section text-red-500">{error || "Article not found"}</div>;
 
   return (
     <>
       <div className="alpha-section">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-[var(--space-xl)]">
           <div className="md:col-span-2">
-            <h1 className="text-3xl font-bold mb-4">{article.title}</h1>
+            <h1 className="text-3xl font-bold mb-4">{post.title}</h1>
             <div className="mb-4">
               <div className="text-gray-600">
-                By {article.authorName}
-                {article.authorRole && (
-                  <span className="ml-2">&mdash; {article.authorRole}</span>
+                By {post.authorName}
+                {post.authorRole && (
+                  <span className="ml-2">&mdash; {post.authorRole}</span>
                 )}
               </div>
-              <div className="text-gray-500 text-sm mt-1">{article.date}</div>
+              <div className="text-gray-500 text-sm mt-1">{post.date}</div>
             </div>
-            <img src={article.image} alt={article.title} className="w-full h-100 object-cover mb-4 rounded-[var(--radius-md)]" />
-            <div className="prose max-w-none">{renderContent(article.content)}</div>
-            
+            {post.image && (
+              <img src={post.image} alt={post.title} className="w-full h-100 object-cover mb-4 rounded-[var(--radius-md)]" />
+            )}
+            <div className="prose max-w-none space-y-[var(--space-md)]" dangerouslySetInnerHTML={{ __html: post.content }} />
+
             {/* Author Bio Section */}
             <div className="alpha-card bg-[var(--color-bg-muted)] mt-[var(--space-lg)] mb-[var(--space-lg)]">
-              <div className="heading-style-h4 mb-2">{article.authorName}</div>
-              <div className="body-text max-w-3xl">
-                {article.authorBio}
-              </div>
+              <div className="heading-style-h4 mb-2">{post.authorName}</div>
+              <div className="body-text max-w-3xl">{post.authorBio}</div>
             </div>
-            
+
             <div className="mt-8 mb-8">
-              <Link href="#">
+              <Link href="/blog">
                 <Button className="alpha-btn-primary">Read More</Button>
               </Link>
             </div>
-            
+
             {/* Pagination */}
-            <ArticlePagination currentIndex={currentIndex} items={allArticles} basePath="/news" idKey="id" />
+            <ArticlePagination currentIndex={currentIndex} items={allPosts} basePath="/blog" />
           </div>
           <div className="md:col-span-1">
             {/* Share on Social Media Widget */}
@@ -139,7 +104,7 @@ export default function NewsArticlePage() {
                 </a>
                 {/* Twitter */}
                 <a
-                  href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&text=${encodeURIComponent(article.title)}`}
+                  href={`https://twitter.com/intent/tweet?url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&text=${encodeURIComponent(post.title)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Share on Twitter"
@@ -149,7 +114,7 @@ export default function NewsArticlePage() {
                 </a>
                 {/* LinkedIn */}
                 <a
-                  href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&title=${encodeURIComponent(article.title)}`}
+                  href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(typeof window !== 'undefined' ? window.location.href : '')}&title=${encodeURIComponent(post.title)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Share on LinkedIn"
@@ -159,7 +124,29 @@ export default function NewsArticlePage() {
                 </a>
               </div>
             </div>
-            <NewsListSidebar articles={otherArticles} />
+            {/* Blog List Sidebar */}
+            <aside>
+              <h3 className="font-bold text-lg mb-4">More Posts</h3>
+              <ul className="space-y-4">
+                {sidebarPosts.map(article => (
+                  <li key={article.id || article.slug} className="flex items-start space-x-3">
+                    <Link href={`/blog/${article.slug}`} className="block w-20 h-16 flex-shrink-0">
+                      <img
+                        src={article.image}
+                        alt={article.title}
+                        className="rounded-md object-cover w-20 h-16"
+                      />
+                    </Link>
+                    <div className="flex-1">
+                      <Link href={`/blog/${article.slug}`} className="block font-semibold text-sm leading-tight text-gray-900 mb-1">
+                        {article.title.length > 60 ? article.title.slice(0, 57) + '...' : article.title}
+                      </Link>
+                      <Link href={`/blog/${article.slug}`} className="text-xs font-bold">Read More</Link>
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            </aside>
           </div>
         </div>
       </div>

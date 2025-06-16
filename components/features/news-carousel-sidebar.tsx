@@ -1,23 +1,35 @@
 import React, { useState } from "react";
 import ArticleCard from "@/components/features/article-card";
 import SimpleCarousel from "@/components/features/simple-carousel";
-import sampleNewsArticle from "@/content/news/sample-news-article";
+import type { NewsArticle } from "@/utils/content-loader.client";
 
-// Import all news articles here
-const newsArticles = [
-  sampleNewsArticle,
-  // Add more articles as you create them
-];
+interface NewsCarouselSidebarProps {
+  articles: NewsArticle[];
+}
 
-export default function NewsCarouselSidebar() {
+export default function NewsCarouselSidebar({ articles = [] }: NewsCarouselSidebarProps) {
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // If no articles, show a message
+  if (!articles || articles.length === 0) {
+    return (
+      <div className="flex flex-col h-full scheme-pink bg-[var(--color-warm)] rounded-[var(--radius-lg)] p-[var(--space-md)]">
+        <div className="flex items-center justify-between w-full mb-4">
+          <h3 className="heading-style-h4">In the News</h3>
+        </div>
+        <div className="flex-1 flex items-center justify-center text-center text-gray-500">
+          No news articles available at the moment.
+        </div>
+      </div>
+    );
+  }
+
   const nextItem = () => {
-    setActiveIndex((prev) => (prev + 1) % newsArticles.length);
+    setActiveIndex((prev) => (prev + 1) % articles.length);
   };
 
   const prevItem = () => {
-    setActiveIndex((prev) => (prev - 1 + newsArticles.length) % newsArticles.length);
+    setActiveIndex((prev) => (prev - 1 + articles.length) % articles.length);
   };
 
   return (
@@ -48,7 +60,7 @@ export default function NewsCarouselSidebar() {
         </div>
       </div>
       <SimpleCarousel
-        items={newsArticles}
+        items={articles}
         renderItem={(item) => (
           <ArticleCard
             key={item.id}
