@@ -77,17 +77,17 @@ export default function Footer() {
             <h3 className="text-base font-medium mb-2 pb-0">Insights</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/blog" className="hover:text-blue-800">
+                <Link href="/blog">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/news" className="hover:text-blue-800">
+                <Link href="/news">
                   In the News
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-blue-800">
+                <Link href="#">
                   AI
                 </Link>
               </li>
@@ -99,27 +99,27 @@ export default function Footer() {
             <h3 className="text-base font-medium mb-2 pb-0">Other Schools</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="#" className="hover:text-blue-800">
+                <Link href="#">
                   Future of Education
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:text-blue-800">
+                <Link href="#">
                   GT School
                 </Link>
               </li>
               <li>
-                <Link href="https://sportsacademy.school/" className="hover:text-blue-800">
+                <Link href="https://sportsacademy.school/">
                   Texas Sports Academy
                 </Link>
               </li>
               <li>
-                <Link href="http://nextgenacademy.school/" className="hover:text-blue-800">
+                <Link href="http://nextgenacademy.school/">
                   NextGen Academy
                 </Link>
               </li>
               <li>
-                <Link href="http://valenta.school" className="hover:text-blue-800">
+                <Link href="http://valenta.school">
                   Valenta Academy
                 </Link>
               </li>
@@ -132,7 +132,7 @@ export default function Footer() {
      
         <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
           <div>
-            <Link href="/privacy-policy" className="text-sm hover:text-blue-200">
+            <Link href="/privacy-policy">
               Privacy Policy
             </Link>
           </div>

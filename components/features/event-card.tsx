@@ -45,8 +45,8 @@ export default function EventCard({
       </div>
       <div className="p-6 flex flex-col flex-1">
         <div className="flex gap-2 mb-4">
-          <span className="tag-default">{locationTag}</span>
-          <span className="tag-default">{category}</span>
+          <span className="tag-blue">{locationTag}</span>
+          <span className="tag-blue">{category}</span>
         </div>
         <h2 className="text-2xl font-bold mb-4 text-[var(--color-primary)]">{title}</h2>
         <h3 className="text-lg font-semibold mb-1">{location}</h3>
@@ -59,9 +59,13 @@ export default function EventCard({
           <span>{address}</span>
         </div>
         <p className="mb-4 text-[var(--color-text-main)]">{description}</p>
-        <Button variant="lightBlue" className="bg-[var(--color-primary)] text-white">
-          href={url}{buttonText}
-        </Button>
+        <Link href={url} passHref legacyBehavior>
+          <a className="block">
+            <Button variant="default" className="w-full">
+              {buttonText}
+            </Button>
+          </a>
+        </Link>
       </div>
     </div>
   )

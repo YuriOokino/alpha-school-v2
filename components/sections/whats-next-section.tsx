@@ -11,13 +11,13 @@ export default function WhatsNextSection() {
 
         <div className="flex flex-wrap justify-center gap-4">
           <Link href="/learn-more">
-            <Button variant="link">Learn More</Button>
+            <Button variant="default">Learn More</Button>
           </Link>
           <Link href="/events">
-            <Button variant="link">View Events</Button>
+            <Button variant="default">View Events</Button>
           </Link>
           <Link href="/video-library">
-            <Button variant="link">Watch Videos</Button>
+            <Button variant="default">Watch Videos</Button>
           </Link>
         </div>
       </div>
