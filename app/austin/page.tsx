@@ -1,37 +1,17 @@
-import fs from 'fs';
-import path from 'path';
 import MainHeading from "@/components/layout/main-heading"
 import WhatsNextSection from "@/components/sections/whats-next-section"
 import { Button } from "@/components/ui/button"
 import FeatureCard from "@/components/features/feature-card"
-import Gallery from "@/components/features/gallery"
 import EventCard from "@/components/features/event-card"
 import { events } from "@/content/events"
-import media from "@/content/campuses/brownsville/media.json";
+import media from "@/content/campuses/austin/media.json";
 
-// Placeholder imports for images and cards
-// import Image from "next/image"
-// import EventCard from "@/components/features/event-card"
-
-export default async function BrownsvillePage() {
-  // This runs on the server!
-  const galleryDir = path.join(process.cwd(), 'public/assets/brownsville');
-  let galleryImages: { src: string; alt: string }[] = [];
-  try {
-    const files = fs.readdirSync(galleryDir);
-    galleryImages = files
-      .filter(file => /\.(webp|jpg|jpeg|png|gif)$/i.test(file))
-      .map(file => ({ src: `/assets/brownsville/${file}`, alt: 'Brownsville campus photo' }));
-  } catch (e) {
-    // Directory may not exist yet
-    galleryImages = [];
-  }
-
+export default async function AustinPage() {
   return (
     <main>
       {/* Main Title Section */}
       <MainHeading>
-        Alpha School | Private School in Brownsville
+        Alpha School | Private School in Austin
       </MainHeading>
 
       {/* Welcome Section */}
@@ -40,48 +20,14 @@ export default async function BrownsvillePage() {
           className="scheme-lightblue"
           media={{
             video: media.video.includes("?") ? `${media.video}&autoplay=1` : `${media.video}?autoplay=1`,
-            poster: "/assets/feature-video-overlays/brownsville-video-preview.webp"
+            poster: media.videoPoster
           }}
         >
           <h2 className="heading-style-h2 mb-4">Welcome to the Future of Education</h2>
-          <p className="mb-4">
-            Alpha's Brownsville campus offers an educational experience that revolutionizes education, inspiring and motivating kids to be limitless. With the power of AI and personalized learning, students complete core academics in just two hours each morning, leaving afternoons for workshops that nurture creativity, teach real-world skills, and fuel individual passions.
-          </p>
-          <p className="mb-4">
-            Alpha is built around the philosophy that kids who love school work harder, step out of their comfort zones, connect with each other, and take ownership of their growth and future.
-          </p>
-          <p>
-            Opened in 2022 to serve the South Texas community, Alpha Brownsville is now the academic network's fastest-growing campus, delivering on their commitments to every student: love school, learn 2h a day, and master life skills.
-          </p>
-        </FeatureCard>
-      </section>
-
-      {/* Photo Gallery Section */}
-      <section className="alpha-section">
-        <Gallery images={galleryImages} />
-      </section>
-
-      {/* Starseeds Section */}
-      <section className="alpha-section">
-        <FeatureCard
-          className="bg-[var(--color-bg-muted)]"
-          media={
-            <img
-              src="/assets/starseed.webp"
-              alt="Starseeds at Alpha Brownsville"
-              className="w-full h-full object-cover"
-              draggable={false}
-            />
-          }
-        >
-          <h2 className="heading-style-h2 mb-4">Starseeds (PreK3 & PreK4)</h2>
-          <p className="mb-4">
-            At Alpha Brownsville Starseeds, we believe every child is born curious, capable, and ready to explore the world. Our PreK3 & PreK4 program blends structured learning with joyful discovery, offering a balance of reading, phonics, math, art, foreign language, music, movement, STEAM, and even aquatic confidence! With a nurturing environment that fosters independence, creativity, and social-emotional growth, your little one will love learning every day.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button href="mailto:admissions.brownsville@alpha.school">Find Out More</Button>
-            <Button variant="outline">View Brochure</Button>
-          </div>
+          <p className="mb-8">Imagine a school where students love to learn.</p>
+          <p className="mb-8">At Alpha Austin, our revolutionary 2 Hour Learning model combines cutting-edge technology with personalized, one-on-one academic instruction, empowering students to rank in the top 1-2% nationally.</p>
+          <p className="mb-8">Afternoons focus on life skills through hands-on workshops, preparing students to thrive beyond academics. With our guides, students receive tailored support to meet their unique potential. At Alpha Austin, we're not just preparing students for tests; we're preparing them for limitless futures.</p>
+          <p>Alpha Austin is open and enrolling. Come see how we're redefining education – join us for a showcase!</p>
         </FeatureCard>
       </section>
 
@@ -89,13 +35,47 @@ export default async function BrownsvillePage() {
       <section className="alpha-section">
         <div className="scheme-pink w-full rounded-[var(--radius-lg)] p-[var(--space-xl)] flex flex-col md:flex-row gap-[var(--space-xl)] items-start bg-[var(--color-bg-muted)]">
           <div className="flex-1">
-            <h2 className="heading-style-h2 mb-4">Brownsville Campus</h2>
+            <h2 className="heading-style-h2 mb-4">Austin Campus</h2>
             <ul className="body-text mb-4">
-              <li><strong>PK - 8th Grade</strong></li>
-              <li>591 N. Central Avenue Brownsville, TX 78521</li>
+              <li>
+                <a 
+                  href="https://www.google.com/maps/search/?api=1&query=1201+Spyglass+Drive+Austin+Texas+78746" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-2">
+                      <svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.00006 12.3335C10.2061 12.3335 12.0001 10.5395 12.0001 8.3335C12.0001 6.1275 10.2061 4.3335 8.00006 4.3335C5.79406 4.3335 4.00006 6.1275 4.00006 8.3335C4.00006 10.5395 5.79406 12.3335 8.00006 12.3335ZM8.00006 6.3335C9.10306 6.3335 10.0001 7.2305 10.0001 8.3335C10.0001 9.4365 9.10306 10.3335 8.00006 10.3335C6.89706 10.3335 6.00006 9.4365 6.00006 8.3335C6.00006 7.2305 6.89706 6.3335 8.00006 6.3335Z" fill="currentColor"/>
+                        <path d="M7.42009 20.1475C7.58934 20.2684 7.79211 20.3333 8.00009 20.3333C8.20806 20.3333 8.41084 20.2684 8.58009 20.1475C8.88409 19.9325 16.0291 14.7735 16.0001 8.3335C16.0001 3.9225 12.4111 0.333496 8.00009 0.333496C3.58909 0.333496 8.80377e-05 3.9225 8.80377e-05 8.3285C-0.028912 14.7735 7.11609 19.9325 7.42009 20.1475ZM8.00009 2.3335C11.3091 2.3335 14.0001 5.0245 14.0001 8.3385C14.0211 12.7765 9.61209 16.7615 8.00009 18.0685C6.38909 16.7605 1.97909 12.7745 2.00009 8.3335C2.00009 5.0245 4.69109 2.3335 8.00009 2.3335Z" fill="currentColor"/>
+                      </svg>
+                      <strong>PK4 - 6th Grade</strong>
+                    </div>
+                    1201 Spyglass Drive, Austin, Texas 78746
+                  </div>
+                </a>
+              </li>
+              <li className="mt-4">
+                <a 
+                  href="https://www.google.com/maps/search/?api=1&query=201+Colorado+Street+Austin+Texas+78701" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-2">
+                      <svg width="16" height="21" viewBox="0 0 16 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8.00006 12.3335C10.2061 12.3335 12.0001 10.5395 12.0001 8.3335C12.0001 6.1275 10.2061 4.3335 8.00006 4.3335C5.79406 4.3335 4.00006 6.1275 4.00006 8.3335C4.00006 10.5395 5.79406 12.3335 8.00006 12.3335ZM8.00006 6.3335C9.10306 6.3335 10.0001 7.2305 10.0001 8.3335C10.0001 9.4365 9.10306 10.3335 8.00006 10.3335C6.89706 10.3335 6.00006 9.4365 6.00006 8.3335C6.00006 7.2305 6.89706 6.3335 8.00006 6.3335Z" fill="currentColor"/>
+                        <path d="M7.42009 20.1475C7.58934 20.2684 7.79211 20.3333 8.00009 20.3333C8.20806 20.3333 8.41084 20.2684 8.58009 20.1475C8.88409 19.9325 16.0291 14.7735 16.0001 8.3335C16.0001 3.9225 12.4111 0.333496 8.00009 0.333496C3.58909 0.333496 8.80377e-05 3.9225 8.80377e-05 8.3285C-0.028912 14.7735 7.11609 19.9325 7.42009 20.1475ZM8.00009 2.3335C11.3091 2.3335 14.0001 5.0245 14.0001 8.3385C14.0211 12.7765 9.61209 16.7615 8.00009 18.0685C6.38909 16.7605 1.97909 12.7745 2.00009 8.3335C2.00009 5.0245 4.69109 2.3335 8.00009 2.3335Z" fill="currentColor"/>
+                      </svg>
+                      <strong>7th - 8th Grade</strong>
+                    </div>
+                    201 Colorado Street, Austin, Texas 78701
+                  </div>
+                </a>
+              </li>
             </ul>
             <p className="body-text mb-2">
-              <strong>Email:</strong> admissions.brownsville@alpha.school
+              <strong>Email:</strong> admissions@alpha.school
             </p>
             <Button variant="default" href="/application">
               Apply Today!
@@ -156,9 +136,7 @@ export default async function BrownsvillePage() {
                   </svg>
                 </span>
               </Button>
-              
             </div>
-            
           </div>
         </div>
       </section>
@@ -170,7 +148,7 @@ export default async function BrownsvillePage() {
           Explore our showcases to tour the campus, and enjoy our camps and afterschool programs offering exciting, hands-on experiences for kids.
         </p>
         <div className="flex flex-col md:flex-row flex-wrap gap-[var(--space-xl)] justify-center">
-          {events.filter(e => e.location.toLowerCase().includes("brownsville")).map((event, idx) => (
+          {events.filter(e => e.location.toLowerCase().includes("austin")).map((event, idx) => (
             <div className="max-w-md w-full" key={event.url + idx}>
               <EventCard {...event} />
             </div>

@@ -192,16 +192,16 @@ export const navItems: NavItem[] = [
       {
         label: "TEXAS",
         items: [
-          { title: "Austin", href: "#", description: "PK4-8" },
-          { title: "Brownsville", href: "#", description: "PK 8" },
-          { title: "Houston", href: "#", description: "Opening August 2025" },
-          { title: "Fort Worth", href: "#", description: "Opening August 2025" },
+          { title: "Austin", href: "/austin", description: "PK4-8" },
+          { title: "Brownsville", href: "/brownsville", description: "PK 8" },
+          { title: "Houston", href: "/houston", description: "Opening August 2025" },
+          { title: "Fort Worth", href: "/fort-worth", description: "Opening August 2025" },
         ],
       },
       {
         label: "FLORIDA",
         items: [
-          { title: "Miami", href: "#", description: "K 10" },
+          { title: "Miami", href: "/miami", description: "K 10" },
           { title: "Orlando", href: "#", description: "Opening August 2025" },
           { title: "Tampa", href: "#", description: "Opening August 2025" },
           { title: "Palm Beach", href: "#", description: "Opening August 2025" },

@@ -10,7 +10,7 @@ const buttonVariants = cva(
       variant: {
         default: "bg-black text-white hover:bg-neutral-800 [&[href]]:text-white",
         destructive: "bg-black text-white hover:bg-neutral-800",
-        outline: "text-black outline outline-black hover:bg-neutral-200",
+        outline: "text-black outline outline-black hover:opacity-50",
         secondary: "bg-black text-white hover:bg-neutral-800",
         ghost: "bg-black text-white hover:bg-neutral-800",
         link: "underline-offset-4",

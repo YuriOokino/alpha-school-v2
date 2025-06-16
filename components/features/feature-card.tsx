@@ -42,27 +42,33 @@ export default function FeatureCard({ media, children, className, ...rest }: Fea
         </span>
       </button>
     ) : (
-      <iframe
-        src={video.replace("youtu.be/", "www.youtube.com/embed/")}
-        title="Video"
-        className="w-full h-full aspect-video rounded-[var(--radius-md)]"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowFullScreen
-      />
+      <div className="absolute inset-0 bg-transparent">
+        <iframe
+          src={video.includes("vimeo.com") 
+            ? video.replace("player.vimeo.com/video/", "player.vimeo.com/video/").replace(/\?.*$/, "?autoplay=1&controls=1&background=0&transparent=1")
+            : video.replace("youtu.be/", "www.youtube.com/embed/")}
+          title="Video"
+          className="w-full h-full rounded-[var(--radius-md)]"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        />
+      </div>
     );
   } else {
     mediaContent = media;
   }
 
   return (
-    <div {...rest} className={`w-full rounded-[var(--radius-lg)] p-[var(--space-xl)] flex flex-col md:flex-row gap-[var(--space-xl)] items-stretch ${className || ''}`}>
+    <div {...rest} className={`w-full rounded-[var(--radius-lg)] p-[var(--space-xl)] flex flex-col md:flex-row gap-[var(--space-xl)] items-stretch bg-transparent ${className || ''}`}>
       <div className="flex-1 flex flex-col justify-top">
         {children}
       </div>
       {mediaContent && (
         <div className="flex-1 flex items-center justify-center">
-          <div className="w-full aspect-[4/3] rounded-[var(--radius-md)] overflow-hidden flex items-center justify-center relative">
-            {mediaContent}
+          <div className="w-full aspect-[4/3] rounded-[var(--radius-md)] overflow-hidden flex items-center justify-center relative bg-transparent">
+            <div className="absolute inset-0">
+              {mediaContent}
+            </div>
           </div>
         </div>
       )}

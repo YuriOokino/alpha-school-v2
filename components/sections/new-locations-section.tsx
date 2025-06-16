@@ -30,7 +30,7 @@ export default function NewLocationsSection({ locations }: NewLocationsSectionPr
       <div className="w-full bg-[#6B3535] rounded-[var(--radius-lg)] p-[var(--space-xl)] relative">
         <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-[var(--space-lg)] gap-[var(--space-md)]">
           <h3 className="font-bold text-2xl text-[#FFD1D1]">New Locations Opening in August 2025</h3>
-          <Button className="gap-2 bg-[var(--color-warm)] text-[var(--color-warm-dark)] hover:bg-[#F5B5B5]">
+          <Button variant="pink" href="/locations" className="gap-2">
             View all locations
             <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M5.293 12.293L6.707 13.707L13.414 6.99997L6.707 0.292969L5.293 1.70697L9.586 5.99997H0V7.99997H9.586L5.293 12.293Z" fill="currentColor"/>

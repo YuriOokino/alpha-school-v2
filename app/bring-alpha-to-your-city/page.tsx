@@ -65,7 +65,7 @@ export default function BringAlphaToYourCity() {
       </MainHeading>
 
       <section className="alpha-section">
-        <div className="bg-[#B9EDFF] text-[#111827] rounded-[40px] p-16 flex flex-col gap-4 shadow-none border-0 mx-auto max-w-[1200px]">
+        <div className="bg-[var(--color-primary-light)] text-black rounded-[var(--radius-lg)] p-16 flex flex-col gap-4 shadow-none border-0 mx-auto max-w-[1200px]">
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="flex gap-4">
               <div className="flex-1">
