@@ -42,7 +42,7 @@ export default function FeatureCard({ media, children, className, ...rest }: Fea
         </span>
       </button>
     ) : (
-      <div className="absolute inset-0 bg-transparent">
+      <div className="absolute inset-0">
         <iframe
           src={video.includes("vimeo.com") 
             ? video.replace("player.vimeo.com/video/", "player.vimeo.com/video/").replace(/\?.*$/, "?autoplay=1&controls=1&background=0&transparent=1")
@@ -59,7 +59,7 @@ export default function FeatureCard({ media, children, className, ...rest }: Fea
   }
 
   return (
-    <div {...rest} className={`w-full rounded-[var(--radius-lg)] p-[var(--space-xl)] flex flex-col md:flex-row gap-[var(--space-xl)] items-stretch bg-transparent ${className || ''}`}>
+    <div {...rest} className={`w-full rounded-[var(--radius-lg)] p-[var(--space-xl)] flex flex-col md:flex-row gap-[var(--space-xl)] items-stretch ${className || ''}`}>
       <div className="flex-1 flex flex-col justify-top">
         {children}
       </div>

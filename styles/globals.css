@@ -379,3 +379,7 @@ select {
     font-size: 0.875rem; /* matches md:text-sm */
   }
 }
+
+.image-hover-scale {
+  @apply object-cover transition-transform duration-300 scale-105 group-hover:scale-100;
+}

@@ -32,7 +32,7 @@ export default function GuideCard({ image, name, role, bio, className = "" }: Gu
         >
           <div className={"transition-all duration-300 ease-in-out flex flex-col gap-2 items-start " + (hovered ? 'opacity-0 h-0 overflow-hidden' : 'opacity-100 h-auto overflow-visible')}>
             <span className="tag-blue">{role}</span>
-            <h3 className="text-[var(--color-text-main)] font-light uppercase text-lg leading-tight">{name}</h3>
+            <h3 className="font-light uppercase text-lg leading-tight text-black">{name}</h3>
           </div>
           <p className={"text-sm leading-snug transition-all duration-300 ease-in-out m-0 " + (hovered ? 'opacity-100 h-auto overflow-visible' : 'opacity-0 h-0 overflow-hidden')}>{bio}</p>
         </div>

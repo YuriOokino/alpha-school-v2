@@ -1,6 +1,3 @@
-// Remove fs and path imports
-// import fs from 'fs';
-// import path from 'path';
 import MainHeading from "@/components/layout/main-heading"
 import WhatsNextSection from "@/components/sections/whats-next-section"
 import { Button } from "@/components/ui/button"
@@ -9,23 +6,7 @@ import Gallery from "@/components/features/gallery"
 import EventCard from "@/components/features/event-card"
 import { events } from "@/content/events"
 
-// Placeholder imports for images and cards
-// import Image from "next/image"
-// import EventCard from "@/components/features/event-card"
-
 export default async function BrownsvillePage() {
-  // This runs on the server!
-  // const galleryDir = path.join(process.cwd(), 'public/assets/brownsville');
-  // let galleryImages: { src: string; alt: string }[] = [];
-  // try {
-  //   const files = fs.readdirSync(galleryDir);
-  //   galleryImages = files
-  //     .filter(file => /\.(webp|jpg|jpeg|png|gif)$/i.test(file))
-  //     .map(file => ({ src: `/assets/brownsville/${file}`, alt: 'Brownsville campus photo' }));
-  // } catch (e) {
-  //   // Directory may not exist yet
-  //   galleryImages = [];
-  // }
 
   return (
     <main>
